@@ -32,6 +32,7 @@ DEV NOTES:
 Poetry Game is a site where 5 people each write a poem with a shared title and line/syllable configuration then use secret ranked voting to determine the "winner" poem.  
 
 User can sign up with Facebook or email
+	(Use Devise with OmniAuth)
 User will have:
 	a username visible to the other users
 	an email
@@ -52,7 +53,7 @@ When the User creates a "round" they pick a title for all the poems, the total n
 The poems will continue to exist as entries in this "round" but may be deleted by their creators.  
 The round may be deleted by the creator of the round, but the poems will continue to exist for the poem creators on their home pages.
 
-After User starts round, all participants receive notice on their homepage next time they log in.
+After User starts reund, all participants receive notice on their homepage next time they log in.
   *opt in/out?  Not now
 
 After either all particpants submit poems or a set time, regardless of whether or not participants have responded, the round closes and voting is begins.
@@ -73,7 +74,6 @@ Sign up will log in but have brief explanation
 User homepage
 	Submitted poems from previous rounds
 	Active rounds
-	Willing to be randomly assigned?
 	Max active poetry rounds (1-10)
 	Change settings
 Change Settings
@@ -86,10 +86,10 @@ MODELS
 	Round - has many poems, has many Users through poems
 
 ROLES
+	(CanCanCan? or just Devise?)
 	Admin - Do it all
 	Creator of Round - Create/Delete round, participate in round
 	Participant - participate in round, set poem to private/public, delete poem from round
 	User - See public rounds, see/delete own poems, see all users profiles
 	Other - restricted unless signed up or in
-
 
