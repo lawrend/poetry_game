@@ -6,10 +6,15 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<%= yield %>
-
-</body>
+  <body>
+    <%= render 'layouts/header' %>
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      # try in percentages flash.each do |name, msg| close percentage
+      # percentage equal content_tag(:div, msg, class: "alert alert-info") close percentage
+      # percentage end close percentage
+    <%= yield %>
+    </div>
+  </body>
 </html>
