@@ -32,7 +32,7 @@ DEV NOTES:
 Poetry Game is a site where 5 people each write a poem with a shared title and line/syllable configuration then use secret ranked voting to determine the "winner" poem.  
 
 User can sign up with Facebook or email
-	(Use Devise with OmniAuth)
+	Use Devise with OmniAuth
 User will have:
 	a username visible to the other users
 	an email
@@ -45,16 +45,16 @@ A User's homepage will have links to all poems and the rounds they were in, as w
 A User's public homepage will have poems marked as 'public' and a bio.
 
 A User creates a "round" and either invites friends or adds random users.
-  (Each user can determine if they are considered a "random" and the maximum number of rounds they will be involved in at one time)
+  Each user can determine if they are considered a "random" and the maximum number of rounds they will be involved in at one time
 
 When the User creates a "round" they pick a title for all the poems, the total number of lines (1-9), and the syllables for each line (1-12) (e.g. a poem called "Foo Bar Is Played Out", 4 lines, 3-5-7-1).
-  *Fib seq can be a default for syllable count
+  Fib seq can be a default for syllable count
 
 The poems will continue to exist as entries in this "round" but may be deleted by their creators.  
 The round may be deleted by the creator of the round, but the poems will continue to exist for the poem creators on their home pages.
 
 After User starts reund, all participants receive notice on their homepage next time they log in.
-  *opt in/out?  Not now
+  opt in/out?  Not now
 
 After either all particpants submit poems or a set time, regardless of whether or not participants have responded, the round closes and voting is begins.
 
@@ -66,30 +66,40 @@ There will be no ties.  In the event of a tie the winner will be chosen at rando
 
 The winning poem will be somehow designated as such
 
-VIEWS
-	(All with Nav?)
+VIEWS (All with Nav?)
+
 Sign up/sign in
+
 Sign up will log in but have brief explanation
 	put explanation/tutorial in navbar too
+
 User homepage
 	Submitted poems from previous rounds
 	Active rounds
 	Max active poetry rounds (1-10)
 	Change settings
+
 Change Settings
 	Change password
 	*Change username (maybe)
 
 MODELS
+
 	User - has many poems, has many rounds through poems
+
 	Poem - belongs to User, belongs to Round
+
 	Round - has many poems, has many Users through poems
 
-ROLES
-	(CanCanCan? or just Devise?)
+ROLES (CanCanCan? or just Devise?)
+	
 	Admin - Do it all
+	
 	Creator of Round - Create/Delete round, participate in round
+	
 	Participant - participate in round, set poem to private/public, delete poem from round
+	
 	User - See public rounds, see/delete own poems, see all users profiles
+	
 	Other - restricted unless signed up or in
 
