@@ -11,19 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006003950) do
+ActiveRecord::Schema.define(version: 20161008181058) do
 
   create_table "poems", force: :cascade do |t|
     t.string   "title"
     t.integer  "line_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "round_id"
   end
+
+  add_index "poems", ["round_id"], name: "index_poems_on_round_id"
 
   create_table "rounds", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "creator_id"
   end
+
+  add_index "rounds", ["creator_id"], name: "index_rounds_on_creator_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
