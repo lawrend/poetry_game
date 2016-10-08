@@ -6,4 +6,13 @@ class User < ActiveRecord::Base
   has_many :poems 
   has_many :participating_rounds, through: :poems, :foreign_key => "user_id"
   has_many :rounds, :foreign_key => "creator_id"
+  attr_accessor :login
+
+  def login=(login)
+    @login = login
+  end
+
+  def login
+    @login || self.username || self.email
+  end
 end
