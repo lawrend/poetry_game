@@ -13,6 +13,6 @@ class User < ActiveRecord::Base
   end
 
   def login
-    @login || self.username || self.email
+    @login || self.email || self.username
   end
 end
