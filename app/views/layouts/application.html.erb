@@ -8,14 +8,21 @@
 </head>
   <body>
     <%= render 'layouts/header' %>
-    <div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-  <!-- # try in percentages flash.each do |name, msg| close percentage
-      # percentage equal content_tag(:div, msg, class: "alert alert-info") close percentage
-      # percentage end close percentage-->
-    <p>Poetry - is it a game?</p>
-    <%= yield %>
-    </div>
+    <div class="main-wrapper">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-10">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+      <!-- # try in percentages flash.each do |name, msg| close percentage
+          # percentage equal content_tag(:div, msg, class: "alert alert-info") close percentage
+          # percentage end close percentage-->
+          <p class="tag_line">Poetry - is it a game?</p>
+          <hr>
+          <%= yield %>
+          </div>
+        </div> <!--row-->
+      </div> <!--container-fluid-->
+    </div> <!--main-wrapper-->
   </body>
 </html>
