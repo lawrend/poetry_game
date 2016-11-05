@@ -16,5 +16,11 @@
  *= require bootstrap.min
  */
 
+ .log_style {
+ 	font-size: 22pt;
+ 	font-family: ariel;
+ 	color: #1188cc;
+ }
+
  
   
