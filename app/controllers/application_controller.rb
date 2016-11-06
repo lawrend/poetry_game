@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
 
   protected
 
-### ADDS USERNAME AT SIGN UP ###
+### ADDS USERNAME AT SIGN UP, MAX_ROUNDS AT UPDATE ###
   def configure_permitted_parameters
-    added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]
+    added_attrs = [:username, :max_rounds, :email, :password, :password_confirmation, :remember_me]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end 

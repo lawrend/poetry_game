@@ -2,7 +2,7 @@ class PoemsController < ApplicationController
 	before_action :set_poem, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@poems = Poems.all
+		@poems = Poem.all
 	end
 
 	def new

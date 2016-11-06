@@ -8,4 +8,19 @@ class User < ActiveRecord::Base
   has_many :participating_rounds, through: :poems, source: :round
   has_many :created_rounds, :foreign_key => "creator_id", :class_name => "Round"
 
+  def current_rounds
+  	self.participating_rounds.count 
+  end
+
+  def eligible?
+  	self.max_rounds != nil && self.max_rounds > self.current_rounds
+  end
+
+  def self.possible_players
+  	@possible_players = User.select { |player| player.eligible? }
+  end
+
+
+
+
 end

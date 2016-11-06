@@ -22,5 +22,10 @@
  	color: #1188cc;
  }
 
+ hr {
+	box-sizing: content-box;
+	height: 0;
+}
+
  
   

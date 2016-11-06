@@ -77,3 +77,19 @@
   </nav>
   </header>
   </div>
+
+  ## SEARCH BAR FROM NAVBAR ##
+  <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                    </form>
+
+  ## flash messages from application view ##
+
+  <% flash.each do |name, msg| %>
+          <%= content_tag(:div, msg, class: "alert alert-info") %>
+          <% end %> 
+<!--<p class="notice">pct equal notice %></p>
+          <p class="alert">pct equal alert %></p>-->
+          

@@ -1,0 +1,7 @@
+<% @poems.each do |poem| %>
+  <%= poem.title %><br>
+  by<br>
+  <% if poem.user_id %>
+    <%= User.find(poem.user_id).username %><br><br>
+  <%end%>
+<% end %>

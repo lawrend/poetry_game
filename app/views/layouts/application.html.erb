@@ -12,14 +12,12 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-10">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-      <!-- # try in percentages flash.each do |name, msg| close percentage
-          # percentage equal content_tag(:div, msg, class: "alert alert-info") close percentage
-          # percentage end close percentage-->
-          <p class="tag_line">Poetry - is it a game?</p>
-          <hr>
+          
+          <%= render 'layouts/messages' %>
+      
           <%= yield %>
+
+          <%= render 'layouts/footer' %>
           </div>
         </div> <!--row-->
       </div> <!--container-fluid-->
