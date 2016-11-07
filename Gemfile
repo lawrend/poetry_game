@@ -30,6 +30,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # using good old Devise for authentication/roles
 gem 'devise'
 
+#wrapping form_helper with bootstrap
+gem 'bootstrap_form'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

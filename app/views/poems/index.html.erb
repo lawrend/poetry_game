@@ -1,7 +1,5 @@
 <% @poems.each do |poem| %>
-  <%= poem.title %><br>
+  <%= link_to "#{poem.title}", poem_path(poem) %><br>
   by<br>
-  <% if poem.user_id %>
     <%= User.find(poem.user_id).username %><br><br>
-  <%end%>
 <% end %>

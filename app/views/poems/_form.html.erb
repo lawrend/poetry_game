@@ -1,0 +1,40 @@
+<%= bootstrap_form_for(@poem) do |f| %>
+<% if @poem.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> stopped this round from going forward:</h2>
+      <ul>
+	      <% @poem.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	  </ul>
+	</div>
+<% end %>
+  <div class="field">
+    <%= f.text_field :title %><br>
+	<%= f.number_field :line_count %><br>
+	<%= f.number_field :line1_syllables %>
+	<%= f.text_field :line1 %><br>
+	<%= f.number_field :line2_syllables %>
+	<%= f.text_field :line2 %><br>
+	<%= f.number_field :line3_syllables %>
+	<%= f.text_field :line3 %><br>
+	<%= f.number_field :line4_syllables %>
+	<%= f.text_field :line4 %><br>
+	<%= f.number_field :line5_syllables %>
+	<%= f.text_field :line5 %><br>
+	<%= f.number_field :line6_syllables %>
+	<%= f.text_field :line6 %><br>
+	<%= f.number_field :line7_syllables %>
+	<%= f.text_field :line7 %><br>
+	<%= f.number_field :line8_syllables %>
+	<%= f.text_field :line8 %><br>
+	<%= f.number_field :line9_syllables %>
+	<%= f.text_field :line9 %><br>
+	<%= f.number_field :line10_syllables %>
+	<%= f.text_field :line10 %><br>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<%end%>

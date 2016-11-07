@@ -1,0 +1,5 @@
+<%= @poem.title %><br>
+by<br>
+<%= User.find(@poem.user_id).username %><br><br>
+
+<%= link_to "Edit", edit_poem_path(@poem) %>
