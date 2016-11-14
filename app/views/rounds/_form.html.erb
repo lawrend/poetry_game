@@ -13,13 +13,10 @@
    <%= f.collection_check_boxes :poem_user_ids, User.possible_players, :id, :username %><br>
   </div>
   <div class="field">
-   <%= f.label :title %><br>
-   <%= f.text_field :title %><br>
-   <%= f.label :line_count %><br>
-   <%= f.number_field :line_count %><br>
+    <%= f.text_field :title %><br>
+    <%= f.number_field :line_count %><br>
   </div>
-  <%= f.hidden_field :creator_id, :value => current_user.id %>
-
+    <%= f.hidden_field :creator_id, :value => current_user.id %>
   <div class="actions">
     <%= f.submit %>
   </div>
