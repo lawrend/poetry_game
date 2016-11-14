@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107174315) do
+ActiveRecord::Schema.define(version: 20161114185039) do
 
   create_table "poems", force: :cascade do |t|
     t.string   "title"
@@ -80,9 +80,9 @@ ActiveRecord::Schema.define(version: 20161107174315) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "username"
     t.integer  "max_rounds",             default: 1
     t.integer  "role"
+    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
