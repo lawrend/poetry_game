@@ -9,6 +9,8 @@ class PlayersController < ApplicationController
 	end
 
 	def update
+		@player.update(player_params)
+		redirect_to player_path(@player)
 	end
 
 	def edit
@@ -19,5 +21,9 @@ class PlayersController < ApplicationController
 
 	def set_player
 	  @player = User.find(current_user.id)
+	end
+
+	def player_params
+		params.require(:player).permit(:max_rounds)
 	end
 end
