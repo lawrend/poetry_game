@@ -21,6 +21,9 @@ class PoemsController < ApplicationController
 	end
 
 	def update
+		if @poem.update(poem_params)
+			redirect_to poem_path(@poem)
+		end
 	end
 
 	def destroy

@@ -11,58 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114185039) do
+ActiveRecord::Schema.define(version: 20161121024036) do
+
+  create_table "lines", force: :cascade do |t|
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "poem_id"
+    t.integer  "line_number"
+    t.integer  "syllable_count"
+    t.text     "line_content"
+  end
 
   create_table "poems", force: :cascade do |t|
     t.string   "title"
     t.integer  "line_count"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "round_id"
     t.integer  "user_id"
-    t.integer  "line1_syllables",  default: 1
-    t.integer  "line2_syllables"
-    t.integer  "line3_syllables"
-    t.integer  "line4_syllables"
-    t.integer  "line5_syllables"
-    t.integer  "line6_syllables"
-    t.integer  "line7_syllables"
-    t.integer  "line8_syllables"
-    t.integer  "line9_syllables"
-    t.integer  "line10_syllables"
-    t.text     "line1"
-    t.text     "line2"
-    t.text     "line3"
-    t.text     "line4"
-    t.text     "line5"
-    t.text     "line6"
-    t.text     "line7"
-    t.text     "line8"
-    t.text     "line9"
-    t.text     "line10"
-    t.boolean  "submitted",        default: false
-    t.boolean  "public",           default: true
+    t.boolean  "submitted",  default: false
+    t.boolean  "public",     default: true
   end
 
   add_index "poems", ["round_id"], name: "index_poems_on_round_id"
   add_index "poems", ["user_id"], name: "index_poems_on_user_id"
 
   create_table "rounds", force: :cascade do |t|
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "creator_id"
     t.string   "title"
-    t.integer  "line_count",       default: 1
-    t.integer  "line1_syllables",  default: 1
-    t.integer  "line2_syllables"
-    t.integer  "line3_syllables"
-    t.integer  "line4_syllables"
-    t.integer  "line5_syllables"
-    t.integer  "line6_syllables"
-    t.integer  "line7_syllables"
-    t.integer  "line8_syllables"
-    t.integer  "line9_syllables"
-    t.integer  "line10_syllables"
+    t.integer  "line_count", default: 1
+    t.boolean  "public",     default: true
   end
 
   add_index "rounds", ["creator_id"], name: "index_rounds_on_creator_id"

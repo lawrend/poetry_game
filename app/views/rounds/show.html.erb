@@ -1,2 +1,10 @@
-This is the round.<br>
-<%= User.find(@round.creator_id).username %>
+<h1><%= @round.title %></h1>
+
+<h2>Made By: <%= User.find(@round.creator_id).username %></h2>
+
+<h4>Participants</h4>
+<ul>
+<% @round.users.each do |player| %>
+  <li><%= player.username %></li>
+<% end %>  
+</ul>
