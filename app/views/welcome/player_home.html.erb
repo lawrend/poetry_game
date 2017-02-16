@@ -10,14 +10,18 @@
 <br>
 
 <% if @player.eligible? %>
-You are eligible
+You can write some verses.
 <% else %>
-You are not eligilbe
+Your maximum number of poems has been reached!
 <%end%><br>
 
 <% User.possible_players.each do |player| %>
-  <% if player.username != @player.username %>
-    <%= player.username %><br>
+  <% if User.possible_players.empty? %>
+    There are no eligible players at this time.
+  <% else %>
+  	<% if player.username != @player.username %>
+    	<%= player.username %><br>
+    <% end %>
   <% end %>
 <% end %>
 

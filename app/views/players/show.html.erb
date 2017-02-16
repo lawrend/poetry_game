@@ -16,14 +16,16 @@
 <br>
 
 <% if @player.eligible? %>
-You are eligible
+You can write some verses.
 <% else %>
-You are not eligilbe
+Your maximum number of poems has been reached!
 <%end%><br>
-
+<h3>Invite some of these poets</h3>
+<ul>
 <% User.possible_players.each do |player| %>
   <% if player.username != @player.username %>
-    <%= player.username %><br>
+    <li><%= player.username %><br></li>
   <% end %>
 <% end %>
+</ul>
 
