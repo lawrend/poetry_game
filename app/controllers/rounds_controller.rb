@@ -11,7 +11,11 @@ class RoundsController < ApplicationController
 	end
 
 	def new
-	  @round = Round.new	  
+	  if current_user.eligible?
+	  	@round = Round.new
+	  else
+	  	redirect_to root_path
+	  end
 	end
 
 	def create

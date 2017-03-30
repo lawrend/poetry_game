@@ -11,20 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121024036) do
-
-  create_table "lines", force: :cascade do |t|
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "poem_id"
-    t.integer  "line_number"
-    t.integer  "syllable_count"
-    t.text     "line_content"
-  end
+ActiveRecord::Schema.define(version: 20170330022313) do
 
   create_table "poems", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "line_count"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "round_id"
@@ -37,12 +26,11 @@ ActiveRecord::Schema.define(version: 20161121024036) do
   add_index "poems", ["user_id"], name: "index_poems_on_user_id"
 
   create_table "rounds", force: :cascade do |t|
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "creator_id"
     t.string   "title"
     t.integer  "line_count", default: 1
-    t.boolean  "public",     default: true
   end
 
   add_index "rounds", ["creator_id"], name: "index_rounds_on_creator_id"
@@ -61,7 +49,6 @@ ActiveRecord::Schema.define(version: 20161121024036) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "max_rounds",             default: 1
-    t.integer  "role"
     t.string   "username"
   end
 
