@@ -21,12 +21,12 @@ class RoundsController < ApplicationController
 	def create
 	  @round = Round.new(round_params)
 	    if @round.save
-	      Poem.create(:user_id => @round.creator_id, :title => @round.title, :line_count => @round.line_count, :round_id => @round.id)
-	      @round.poem_user_ids.each do |poet_id|
-	      	if poet_id != ""
-             Poem.create(:user_id => poet_id, :title => @round.title, :line_count => @round.line_count, :round_id => @round.id)
-            end
-          end
+	     # Poem.create(:user_id => @round.creator_id, :title => @round.title, :line_count => @round.line_count, :round_id => @round.id)
+	      #@round.poem_user_ids.each do |poet_id|
+	      #	if poet_id != ""
+             #Poem.create(:user_id => poet_id, :title => @round.title, :line_count => @round.line_count, :round_id => @round.id)
+           # end
+          #end
 	      redirect_to @round
 	    else
 	      redirect_to root_path

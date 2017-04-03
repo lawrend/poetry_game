@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :lines
   resources :rounds
   resources :poems
   devise_for :users

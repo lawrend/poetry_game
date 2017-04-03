@@ -2,11 +2,11 @@ class Poem < ActiveRecord::Base
   belongs_to :user, inverse_of: :poems
   belongs_to :round
   
-  enum staus: [:private, :participants, :public]
+  enum staus: [:hidden, :participants, :open_to_all]
   after_initialize :set_default_staus, :if => :new_record?
 
   def set_default_status
-    self.status ||= :private
+    self.status ||= :hidden
   end
-  
+
 end
