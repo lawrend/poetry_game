@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330031315) do
+ActiveRecord::Schema.define(version: 20170404000420) do
 
   create_table "poems", force: :cascade do |t|
     t.datetime "created_at",                null: false
@@ -19,18 +19,29 @@ ActiveRecord::Schema.define(version: 20170330031315) do
     t.integer  "round_id"
     t.integer  "user_id"
     t.boolean  "public",     default: true
+    t.integer  "status",     default: 0
   end
 
   add_index "poems", ["round_id"], name: "index_poems_on_round_id"
   add_index "poems", ["user_id"], name: "index_poems_on_user_id"
 
   create_table "rounds", force: :cascade do |t|
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "creator_id"
     t.string   "title"
-    t.integer  "line_count", default: 1
-    t.boolean  "active",     default: false
+    t.integer  "line_count",            default: 1
+    t.boolean  "active",                default: false
+    t.integer  "line1_syllable_count",  default: 1
+    t.integer  "line2_syllable_count",  default: 0
+    t.integer  "line3_syllable_count",  default: 0
+    t.integer  "line4_syllable_count",  default: 0
+    t.integer  "line5_syllable_count",  default: 0
+    t.integer  "line6_syllable_count",  default: 0
+    t.integer  "line7_syllable_count",  default: 0
+    t.integer  "line8_syllable_count",  default: 0
+    t.integer  "line9_syllable_count",  default: 0
+    t.integer  "line10_syllable_count", default: 0
   end
 
   add_index "rounds", ["creator_id"], name: "index_rounds_on_creator_id"

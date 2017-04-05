@@ -92,4 +92,10 @@
           <% end %> 
 <!--<p class="notice">pct equal notice %></p>
           <p class="alert">pct equal alert %></p>-->
+
+  ## CHECK BOXES FOR ELIGIBLE PLAYERS ##
+
+  <div class="field">
+   <%= f.collection_check_boxes :poem_user_ids, User.possible_players.delete_if {|player| player == current_user}, :id, :username, label: "Eligible Players" %><br>
+  </div>
           

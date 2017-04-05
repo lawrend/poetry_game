@@ -3,7 +3,8 @@ class RoundsController < ApplicationController
 
 	def index
 		@rounds = current_user.participating_rounds
-		if @rounds.empty?
+		@created_rounds = current_user.created_rounds
+		if @rounds.empty? && @created_rounds.empty?
 			flash[:notice] = "You ain't got no rounds!"
 			@player = current_user
 			redirect_to player_path(current_user.id)
@@ -34,7 +35,6 @@ class RoundsController < ApplicationController
 	end
 
 	def show
-
 	end
 
 	def edit
@@ -53,7 +53,9 @@ class RoundsController < ApplicationController
     end
 
 	def round_params
-		params.require(:round).permit(:creator_id, :title, :line_count, :poem_user_ids => [])
+		params.require(:round).permit(:creator_id, :title, :line_count, :line1_syllable_count, :line2_syllable_count, 
+			:line3_syllable_count, :line4_syllable_count, :line5_syllable_count, :line6_syllable_count, :line7_syllable_count, 
+			:line8_syllable_count, :line9_syllable_count, :line10_syllable_count, :poem_user_ids => [])
 	end
 
 end
