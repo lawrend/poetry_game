@@ -1,5 +1,5 @@
 class RoundsController < ApplicationController
-	before_action :set_round, only: [:show, :update, :edit, :destroy]
+	before_action :set_round, only: [:show, :update, :edit, :destroy, :add_players]
 
 	def index
 		@rounds = current_user.participating_rounds
@@ -32,6 +32,9 @@ class RoundsController < ApplicationController
 	end
 
 	def edit
+	end
+
+	def add_players
 	end
 
 	def update
