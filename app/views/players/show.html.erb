@@ -8,6 +8,12 @@
   <%= submit_tag("Update") %>
   <% end %>
     </li>
+  <li><%= form_tag("/players/#{@player.id}", method: "patch") do %>
+  <%= label_tag(:player, "I am available to play") %>
+  <%= check_box(:player, :available) %>
+  <%= submit_tag("Update") %>
+  <% end %>
+    </li>
   <li><%= link_to "Create A New Round", new_round_path %></li>
   <li><%= link_to "View Current/Past Rounds", rounds_path%></li>
   <li><%= link_to "View Poems", poems_path %></li>
@@ -18,14 +24,18 @@
 <% if @player.eligible? %>
 You can write some verses.
 <% else %>
-Your maximum number of poems has been reached!
+You not in the poetry game right now, yo.
 <%end%><br>
-<h3>Invite some of these poets</h3>
+<h3>These poets are ready to spit fire</h3>
 <ul>
+<% if User.possible_players.empty? %>
+  <li>Ain't Nobody Around</li>
+<% else %>
 <% User.possible_players.each do |player| %>
   <% if player.username != @player.username %>
     <li><%= player.username %><br></li>
   <% end %>
+<% end %>
 <% end %>
 </ul>
 

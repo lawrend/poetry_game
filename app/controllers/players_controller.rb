@@ -24,6 +24,6 @@ class PlayersController < ApplicationController
 	end
 
 	def player_params
-		params.require(:player).permit(:max_rounds)
+		params.require(:player).permit(:max_rounds, :available)
 	end
 end

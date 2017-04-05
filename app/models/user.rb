@@ -9,11 +9,11 @@ class User < ActiveRecord::Base
   has_many :created_rounds, :foreign_key => "creator_id", :class_name => "Round"
   
   def current_rounds
-  	self.participating_rounds.count 
+  	self.participating_rounds.count + self.created_rounds.count
   end
 
   def eligible?
-  	self.max_rounds != nil && self.max_rounds > self.current_rounds
+  	self.max_rounds != nil && self.max_rounds > self.current_rounds && self.available?
   end
 
   def self.possible_players
