@@ -3,7 +3,7 @@ class Poem < ActiveRecord::Base
   belongs_to :round
   
   enum staus: [:hidden, :participants, :open_to_all]
-  after_initialize :set_default_staus, :if => :new_record?
+  #after_initialize :set_default_staus, :if => :new_record?
 
   def set_default_status
     self.status ||= :hidden

@@ -9,29 +9,29 @@
 	  </ul>
 	</div>
 <% end %>
+  <%= @poem.title %>
   <div class="field">
-    <%= f.text_field :title %><br>
-	<%= f.number_field :line_count %><br>
-	<%= f.number_field :line1_syllables %>
-	<%= f.text_field :line1 %><br>
-	<%= f.number_field :line2_syllables %>
-	<%= f.text_field :line2 %><br>
-	<%= f.number_field :line3_syllables %>
-	<%= f.text_field :line3 %><br>
-	<%= f.number_field :line4_syllables %>
-	<%= f.text_field :line4 %><br>
-	<%= f.number_field :line5_syllables %>
-	<%= f.text_field :line5 %><br>
-	<%= f.number_field :line6_syllables %>
-	<%= f.text_field :line6 %><br>
-	<%= f.number_field :line7_syllables %>
-	<%= f.text_field :line7 %><br>
-	<%= f.number_field :line8_syllables %>
-	<%= f.text_field :line8 %><br>
-	<%= f.number_field :line9_syllables %>
-	<%= f.text_field :line9 %><br>
-	<%= f.number_field :line10_syllables %>
-	<%= f.text_field :line10 %><br>
+    Line 1 Syllables = <%= @poem.line1_syllable_count %>
+    <%= f.text_field :line1 %><br>
+    Line 2 Syllables = <%= @poem.line2_syllable_count %>
+    <%= f.text_field :line2 %><br>
+    Line 3 Syllables = <%= @poem.line3_syllable_count %>
+    <%= f.text_field :line3 %><br>
+    Line 4 Syllables = <%= @poem.line4_syllable_count %>
+    <%= f.text_field :line4 %><br>
+    Line 5 Syllables = <%= @poem.line5_syllable_count %>
+    <%= f.text_field :line5 %><br>
+    Line 6 Syllables = <%= @poem.line6_syllable_count %>
+    <%= f.text_field :line6 %><br>
+    Line 7 Syllables = <%= @poem.line7_syllable_count %>
+    <%= f.text_field :line7 %><br>
+    Line 8 Syllables = <%= @poem.line8_syllable_count %>
+    <%= f.text_field :line8 %><br>
+    Line 9 Syllables = <%= @poem.line9_syllable_count %>
+    <%= f.text_field :line9 %><br>
+    Line 10 Syllables = <%= @poem.line10_syllable_count %>
+    <%= f.text_field :line10 %><br>
+    
   </div>
 
   <div class="actions">

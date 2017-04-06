@@ -11,15 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404000420) do
+ActiveRecord::Schema.define(version: 20170406001828) do
 
   create_table "poems", force: :cascade do |t|
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "round_id"
     t.integer  "user_id"
-    t.boolean  "public",     default: true
-    t.integer  "status",     default: 0
+    t.boolean  "public",                default: true
+    t.integer  "status",                default: 0
+    t.integer  "line1_syllable_count"
+    t.integer  "line2_syllable_count"
+    t.integer  "line3_syllable_count"
+    t.integer  "line4_syllable_count"
+    t.integer  "line5_syllable_count"
+    t.integer  "line6_syllable_count"
+    t.integer  "line7_syllable_count"
+    t.integer  "line8_syllable_count"
+    t.integer  "line9_syllable_count"
+    t.integer  "line10_syllable_count"
+    t.text     "line1"
+    t.text     "line2"
+    t.text     "line3"
+    t.text     "line4"
+    t.text     "line5"
+    t.text     "line6"
+    t.text     "line7"
+    t.text     "line8"
+    t.text     "line9"
+    t.text     "line10"
+    t.text     "title"
   end
 
   add_index "poems", ["round_id"], name: "index_poems_on_round_id"

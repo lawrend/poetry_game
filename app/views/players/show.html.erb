@@ -28,13 +28,11 @@ You not in the poetry game right now, yo.
 <%end%><br>
 <h3>These poets are ready to spit fire</h3>
 <ul>
-<% if User.possible_players.empty? %>
+<% if current_user.other_available_players.empty? %>
   <li>Ain't Nobody Around</li>
 <% else %>
-<% User.possible_players.each do |player| %>
-  <% if player.username != @player.username %>
+<% current_user.other_available_players.each do |player| %>
     <li><%= player.username %><br></li>
-  <% end %>
 <% end %>
 <% end %>
 </ul>
