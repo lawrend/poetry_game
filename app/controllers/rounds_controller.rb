@@ -40,6 +40,7 @@ class RoundsController < ApplicationController
 	def update
 		@round.update(round_params)
 		if @round.active?
+			if @round.poems.where(:user_id => @round.creator_id).blank?
 		  Poem.create(:user_id => @round.creator_id, :title => @round.title, 
 		  	:round_id => @round.id, :line1_syllable_count => @round.line1_syllable_count, 
 		  	:line2_syllable_count => @round.line2_syllable_count, :line3_syllable_count => @round.line3_syllable_count, 
@@ -47,8 +48,9 @@ class RoundsController < ApplicationController
 		  	:line6_syllable_count => @round.line6_syllable_count, :line7_syllable_count => @round.line7_syllable_count, 
 		  	:line8_syllable_count => @round.line8_syllable_count, :line9_syllable_count => @round.line9_syllable_count, 
 		  	:line10_syllable_count => @round.line10_syllable_count)
+			end
 	      @round.poem_user_ids.each do |poet_id|
-	        if poet_id != ""
+	        if poet_id != "" && @round.poems.where(:user_id => poet_id).blank?
               Poem.create(:user_id => poet_id, :title => @round.title, :round_id => @round.id, 
            :line1_syllable_count => @round.line1_syllable_count, :line2_syllable_count => @round.line2_syllable_count, :line3_syllable_count => @round.line3_syllable_count,
 		   :line4_syllable_count => @round.line4_syllable_count, :line5_syllable_count => @round.line5_syllable_count, :line6_syllable_count => @round.line6_syllable_count,

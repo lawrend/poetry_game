@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
     @other_available_players = User.possible_players.select { |player| player.id != self.id }
   end
 
+  def in_round?(round)
+    round.users.where(:id => self.id).exists?
+  end
+
   def self.possible_players
   	@possible_players = User.select { |player| player.eligible? }
   end

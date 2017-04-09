@@ -2,6 +2,7 @@
 <hr>
 <p>You are currently participating in <%= @player.current_rounds %> rounds and your maximum is set to <%= @player.max_rounds %> round(s). </p>
 <ul>
+
   <li><%= form_tag("/players/#{@player.id}", method: "patch") do %>
   <%= label_tag(:player, "Maximum Rounds") %>
   <%= number_field(:player, :max_rounds) %>
@@ -14,6 +15,8 @@
   <%= submit_tag("Update") %>
   <% end %>
     </li>
+
+
   <li><%= link_to "Create A New Round", new_round_path %></li>
   <li><%= link_to "View Current/Past Rounds", rounds_path%></li>
   <li><%= link_to "View Poems", poems_path %></li>

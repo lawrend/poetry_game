@@ -1,13 +1,24 @@
-<%= @round.title %>
+<h1><%= @round.title %></h1>
 
- <%= form_tag("/rounds/#{@round.id}", method: "patch") do %>
-   <%= label_tag(:round, "Poets On This Joint") %><br>
-   <%= collection_check_boxes(:round, :poem_user_ids, User.possible_players.delete_if {|player| player == current_user}, :id, :username) %><br>
-   <%= label_tag(:round, "Title") %><br>
-   <%= text_field(:round, :title) %><br>
-   <%= hidden_field(:round, :active, :value => true) %>
-   <%= submit_tag("Get the Party Started") %><br>
+<% if @round.creator_id == current_user.id %>
+ <%= form_for(@round) do |f| %>
+ 	<div class="field">
+	<%= f.label :poem_user_ids, "Poets on the joint" %>
+	<%= f.collection_check_boxes(:poem_user_ids, current_user.other_available_players, :id, :username, checked: @round.users.map(&:id)) %>
+	<%= f.hidden_field(:active, :value => true) %>
+   </div>
+
+   <div class="actions">
+   	<%= f.submit "Get it Going" %>
+   </div>
  <% end %>
+
 or<br>
 
 <%= link_to "Not yet, go home", player_path(current_user.id) %>
+
+<% else %>
+
+<%= link_to "Home", player_path(current_user.id) %>
+
+<% end %>
