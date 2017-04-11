@@ -1,1 +1,8 @@
+<% if @round.active? %>
+<p>Sorry, but this round is active, so the title and syllables can't be changed.</p>
+<br>
+<p>But we can still <%= link_to "Add Players", "add_players/#{@round.id}" %></p>
+<p><%= link_to "Home", player_path(current_user.id) %></p>
+<% else %>
 <%= render 'form' %>
+<% end %>

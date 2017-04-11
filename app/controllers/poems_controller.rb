@@ -3,6 +3,7 @@ class PoemsController < ApplicationController
 
 	def index
 		@poems = Poem.all
+		@rounds = Round.all.where(:active => true)
 	end
 
 	def new

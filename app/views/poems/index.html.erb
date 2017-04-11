@@ -1,5 +1,8 @@
-<% @poems.each do |poem| %>
-  <%= link_to "#{poem.title}", poem_path(poem) %><br>
-  by<br>
-    <%= User.find(poem.user_id).username %><br><br>
+<% @rounds.each do |round| %>
+	<h3><%= round.title %></h3>
+	<ul>
+	<% round.poems.each do |poem| %>
+	<li><%=link_to "#{poem.title}", poem_path(poem) %> by <%= User.find(poem.user_id).username %></li>
+	<% end %>
+	</ul>
 <% end %>

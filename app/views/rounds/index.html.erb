@@ -1,13 +1,13 @@
 <h1>Created Rounds</h1>
 <% @created_rounds.each do |round| %>
-  <%= link_to "#{round.title}", round_path(round.id) %><br>
-  <%= link_to "Edit", edit_round_path(round.id) %><br>
-  <%= link_to "Add some players", "rounds/add_players/#{round.id}" %><br>
+  <h3><%= link_to "#{round.title}", round_path(round.id) %></h3>
+  <p><%= link_to "Edit", edit_round_path(round.id) %></p>
+  <p><%= link_to "Add some players", "rounds/add_players/#{round.id}" %></p>
 <% end %>
 
 <br> 
 <h1>Rounds You are Participating In</h1>
 <% (@rounds - @created_rounds).each do |round| %>
-  <%= link_to "#{round.title}", round_path(round.id) %><br>
+  <h3><%= link_to "#{round.title}", round_path(round.id) %></h3>
 <% end %>
 

@@ -15,24 +15,51 @@
   <div class="field">
     Line 1 Syllables = <%= @poem.line1_syllable_count %>
     <%= f.text_field :line1 %><br>
+
+    <% if @poem.line2_syllable_count != 0 %>
     Line 2 Syllables = <%= @poem.line2_syllable_count %>
     <%= f.text_field :line2 %><br>
+    <% end %>
+
+    <% if @poem.line3_syllable_count != 0 %>
     Line 3 Syllables = <%= @poem.line3_syllable_count %>
     <%= f.text_field :line3 %><br>
+    <% end %>
+
+    <% if @poem.line4_syllable_count != 0 %>
     Line 4 Syllables = <%= @poem.line4_syllable_count %>
     <%= f.text_field :line4 %><br>
+    <% end %>
+
+    <% if @poem.line5_syllable_count != 0 %>
     Line 5 Syllables = <%= @poem.line5_syllable_count %>
     <%= f.text_field :line5 %><br>
+    <% end %>
+
+    <% if @poem.line6_syllable_count != 0 %>
     Line 6 Syllables = <%= @poem.line6_syllable_count %>
     <%= f.text_field :line6 %><br>
+    <% end %>
+
+    <% if @poem.line7_syllable_count != 0 %>
     Line 7 Syllables = <%= @poem.line7_syllable_count %>
     <%= f.text_field :line7 %><br>
+    <% end %>
+
+    <% if @poem.line8_syllable_count != 0 %>
     Line 8 Syllables = <%= @poem.line8_syllable_count %>
     <%= f.text_field :line8 %><br>
+    <% end %>
+
+    <% if @poem.line9_syllable_count != 0 %>
     Line 9 Syllables = <%= @poem.line9_syllable_count %>
     <%= f.text_field :line9 %><br>
+    <% end %>
+
+    <% if @poem.line10_syllable_count != 0 %>
     Line 10 Syllables = <%= @poem.line10_syllable_count %>
     <%= f.text_field :line10 %><br>
+    <% end %>
     
   </div>
   <div class="field">
