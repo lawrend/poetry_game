@@ -17,6 +17,10 @@
  *= require rails_bootstrap_forms
  */
 
+ body {
+ 	background: #cc11aa;
+ }
+
  .log_style {
  	font-size: 22pt;
  	font-family: ariel;
