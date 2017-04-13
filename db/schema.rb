@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413064251) do
+ActiveRecord::Schema.define(version: 20170413065529) do
 
   create_table "poems", force: :cascade do |t|
     t.datetime "created_at",                            null: false
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20170413064251) do
     t.integer  "line8_syllable_count",  default: 0
     t.integer  "line9_syllable_count",  default: 0
     t.integer  "line10_syllable_count", default: 0
+    t.boolean  "open",                  default: true
   end
 
   add_index "rounds", ["creator_id"], name: "index_rounds_on_creator_id"
