@@ -33,6 +33,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def created_and_active_and_open
+    self.created_and_active.select {|round| round.open?}
+  end
+
+  def created_and_open_with_submitted_poem
+    self.created_and_active_and_open.select do |round|
+      self.poems.find_by(:round_id => round.id).submitted? == true
+    end
+  end
+
   def created_and_active_rounds_with_non_submitted_poem
     self.created_and_active - self.rounds_with_non_submitted_poem
   end
@@ -43,7 +53,7 @@ class User < ActiveRecord::Base
 
   #all created rounds that are active plus all other rounds where the poem is not submitted
   def current_rounds
-    (self.rounds_with_non_submitted_poem + self.created_rounds) - self.created_and_active
+    self.rounds_with_non_submitted_poem + self.created_and_inactive + self.created_and_open_with_submitted_poem
   end
 
   def non_submitted_poems

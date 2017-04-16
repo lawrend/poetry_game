@@ -1,4 +1,4 @@
-<% if @rounds.empty? && @created_rounds.empty? %>
+<% if @player_rounds.empty? && @created_rounds.empty? %>
 <h1>You are in no rounds and have created none.</h1>
 <%= link_to "Home", 'player' %>
 <% else %>
@@ -20,10 +20,10 @@
 <br> 
 <h3>Rounds Awaiting Your Poetry</h3>
 
-<% if (@rounds - @created_rounds).count <= 0 %>
+<% if (@player_rounds - @created_rounds).count <= 0 %>
 	<h5>You aren't participating in any rounds you didn't create!</h5>
 <% else %>
-	<% (@rounds - @created_rounds).each do |round| %>
+	<% (@player_rounds - @created_rounds).each do |round| %>
   	<h3><%= link_to "#{round.title}", round_path(round.id) %></h3>
 	<% end %>
 <% end %>
