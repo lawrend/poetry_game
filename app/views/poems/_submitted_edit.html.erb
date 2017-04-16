@@ -1,0 +1,38 @@
+<% if @poem.user_id == current_user.id %>
+
+<%= bootstrap_form_for(@poem) do |f| %>
+<% if @poem.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> stopped this poem from going forward:</h2>
+      <ul>
+	      <% @poem.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	  </ul>
+	</div>
+<% end %>
+  <%= @poem.title %>
+
+  <%= render 'poem_text' %>
+
+  <div class="field">
+  Set the status of your poem:<br>
+  <%= f.label :creator_only, "Only you can see the poem" %>
+  <%= f.radio_button :status, "creator_only" %>
+  <%= f.label :round_participants, "Only those players in the round can see the poem" %>
+  <%= f.radio_button :status, "round_participants" %>
+  <%= f.label :open_to_all, "Everyone can see the poem" %>
+  <%= f.radio_button :status, "open_to_all" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<%end%>
+
+<% else %>
+
+<h2>Sorry, this isn't your poem to write</h2>
+<%= link_to "Home", player_path(current_user.id) %>
+
+<% end %>

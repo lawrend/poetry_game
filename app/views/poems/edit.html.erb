@@ -1,1 +1,9 @@
-<%= render 'form' %>
+<% if @poem.submitted? == true %>
+
+	<%= render 'submitted_edit' %>
+
+<% else %>
+
+	<%= render 'form' %>
+
+<% end %>

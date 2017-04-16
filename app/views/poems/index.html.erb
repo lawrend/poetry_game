@@ -1,8 +1,14 @@
 <% @rounds.each do |round| %>
 	<h3><%= round.title %></h3>
 	<ul>
-	<% round.poems.each do |poem| %>
-	<li><%=link_to "#{poem.title}", poem_path(poem) %> by <%= User.find(poem.user_id).username %></li>
+	<% if round.poems.empty? %>
+		<li>There are no poets in this round yet</li>
+	<% else %>
+		<% round.poems.each do |poem| %>
+		<li><%=link_to "#{poem.title}", poem_path(poem) %> by <%= User.find(poem.user_id).username %></li>
+		<% end %>
 	<% end %>
 	</ul>
 <% end %>
+<br>
+<%= link_to "Home", '/player' %>

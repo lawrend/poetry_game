@@ -1,13 +1,34 @@
-<h1>Created Rounds</h1>
-<% @created_rounds.each do |round| %>
-  <h3><%= link_to "#{round.title}", round_path(round.id) %></h3>
-  <p><%= link_to "Edit", edit_round_path(round.id) %></p>
-  <p><%= link_to "Add some players", "rounds/add_players/#{round.id}" %></p>
+<% if @rounds.empty? && @created_rounds.empty? %>
+<h1>You are in no rounds and have created none.</h1>
+<%= link_to "Home", 'player' %>
+<% else %>
+<h1>Current Rounds</h1>
+<h3>Created & Active Rounds</h3>
+
+<% if @created_rounds.count <= 0 %>
+	<h5>You have not created any rounds yet!</h5>
+<% elsif @created_active_rounds.count <= 0 %>
+	<h5>You don't have any rounds you created that are active!</h5>
+<% else %>
+	<% @created_active_rounds.each do |round| %>
+  	<h3><%= link_to "#{round.title}", round_path(round.id) %></h3>
+  	<p><%= link_to "Edit", edit_round_path(round.id) %></p>
+  	<p><%= link_to "Add some players", "rounds/add_players/#{round.id}" %></p>
+	<% end %>
 <% end %>
 
 <br> 
-<h1>Rounds You are Participating In</h1>
-<% (@rounds - @created_rounds).each do |round| %>
-  <h3><%= link_to "#{round.title}", round_path(round.id) %></h3>
+<h3>Rounds Awaiting Your Poetry</h3>
+
+<% if (@rounds - @created_rounds).count <= 0 %>
+	<h5>You aren't participating in any rounds you didn't create!</h5>
+<% else %>
+	<% (@rounds - @created_rounds).each do |round| %>
+  	<h3><%= link_to "#{round.title}", round_path(round.id) %></h3>
+	<% end %>
 <% end %>
 
+<h1>Old Rounds</h1>
+
+
+<% end %>

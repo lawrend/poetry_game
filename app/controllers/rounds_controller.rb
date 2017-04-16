@@ -2,19 +2,23 @@ class RoundsController < ApplicationController
 	before_action :set_round, only: [:show, :update, :edit, :destroy, :add_players]
 
 	def index
-		@rounds = current_user.participating_rounds
+		@player_rounds = current_user.rounds_as_player
 		@created_rounds = current_user.created_rounds
-		if @rounds.empty? && @created_rounds.empty?
-			flash[:notice] = "You ain't got no rounds!"
-			@player = current_user
-			redirect_to player_path(current_user.id)
-		end
+		@created_active_rounds = current_user.created_and_active
+		@created_inactive_rounds = current_user.created_and_inactive
+
+		#if @rounds.empty? && @created_rounds.empty?
+		#	flash[:notice] = "You ain't got no rounds!"
+		#	@player = current_user
+		#	redirect_to player_path(current_user.id)
+		#end
 	end
 
 	def new
 	  if current_user.eligible?
 	  	@round = Round.new
 	  else
+	  	flash[:notice] = "You aren't eligible. Change your Maximum Rounds or Availability."
 	  	redirect_to root_path
 	  end
 	end

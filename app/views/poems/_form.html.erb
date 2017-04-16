@@ -72,6 +72,12 @@
   <%= f.radio_button :status, "open_to_all" %>
   </div>
 
+  <div class="field">
+  Ready to submit your form? THIS CANNOT BE UNDONE!<br>
+  <%= f.label :submitted, "Yes, I am ready!" %>
+  <%= f.check_box :submitted %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
