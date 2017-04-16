@@ -5,7 +5,7 @@
 		<li>There are no poets in this round yet</li>
 	<% else %>
 		<% round.poems.each do |poem| %>
-		<li><%=link_to "#{poem.title}", poem_path(poem) %> by <%= User.find(poem.user_id).username %></li>
+		<li><%=link_to "#{User.find(poem.user_id).username}", poem_path(poem) %></li>
 		<% end %>
 	<% end %>
 	</ul>

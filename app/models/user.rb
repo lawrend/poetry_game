@@ -23,32 +23,64 @@ class User < ActiveRecord::Base
     self.created_rounds.where(:active => false)
   end
 
-  def rounds_with_non_submitted_poem
-    self.non_submitted_poems.select {|poem| Round.find(poem.round_id)}
+  #all active rounds
+  def all_active_rounds
+    self.rounds_as_player + self.created_and_active
   end
 
-  def player_rounds_with_non_submitted_poem
-    self.player_non_submitted_poems.select do |poem|
-      Round.find(poem.round_id)
+  #all rounds with non submitted poems - NOTE: does NOT include created and inactive rounds
+  def rounds_with_non_submitted_poem
+    self.all_active_rounds.select do |round|
+      !self.poems.find_by(:round_id => round.id).submitted?
     end
   end
 
+  def created_rounds_with_non_submitted_poem
+    self.created_and_active.select do |round|
+      !self.poems.find_by(:round_id => round.id).submitted?
+    end
+  end
+
+  def player_rounds_with_non_submitted_poem
+    self.rounds_as_player.select do |round|
+      !self.poems.find_by(:round_id => round.id).submitted?
+    end
+  end
+
+  def player_rounds_with_submitted_poems
+    self.rounds_as_player.select do |round|
+      self.poems.find_by(:round_id => round.id).submitted?
+    end
+  end
+
+  #all created, active, and open rounds
   def created_and_active_and_open
     self.created_and_active.select {|round| round.open?}
   end
 
+  #all created, active, not open rounds
+  def created_and_active_and_not_open
+    self.created_and_active.select {|round| !round.open?}
+  end
+
+  #all created, active, open rounds with submitted poems - NOTE: These are counted as part of 'current rounds'
   def created_and_open_with_submitted_poem
     self.created_and_active_and_open.select do |round|
-      self.poems.find_by(:round_id => round.id).submitted? == true
+      self.poems.find_by(:round_id => round.id).submitted?
     end
   end
 
-  def created_and_active_rounds_with_non_submitted_poem
-    self.created_and_active - self.rounds_with_non_submitted_poem
+  #all created, active, not open rounds with non-submitted poems
+  def created_and_not_open_with_non_submitted_poem
+    self.created_and_active_and_not_open.select do |round|
+      !self.poems.find_by(:round_id => round.id).submitted?
+    end
   end
 
-  def created_and_inactive_rounds_with_non_submitted_poem
-    self.created_and_inactive - self.rounds_with_non_submitted_poem
+  def created_and_not_open_with_submitted_poem
+    self.created_and_active_and_not_open.select do |round|
+      self.poems.find_by(:round_id => round.id).submitted?
+    end
   end
 
   #all created rounds that are active plus all other rounds where the poem is not submitted
@@ -56,21 +88,18 @@ class User < ActiveRecord::Base
     self.rounds_with_non_submitted_poem + self.created_and_inactive + self.created_and_open_with_submitted_poem
   end
 
+  #all non submitted poems written as player or creator
   def non_submitted_poems
     self.poems.where(:submitted => false)
   end
 
+  #all submitted poems
   def submitted_poems
     self.poems.where(:submitted => true)
   end
 
+  #all non submitted poems written as a player
   def player_non_submitted_poems
-#    @working_poems = []
- #   self.rounds_as_player.each do |round|
-  #    @working_poems << self.poems.select {|poem| poem.round_id == round.id && poem.submitted == false}
-   # end
-   # @working_poems.flatten
-
     self.non_submitted_poems.select do |poem|
       Round.find(poem.round_id).creator_id != self.id 
     end
@@ -80,14 +109,17 @@ class User < ActiveRecord::Base
   	self.max_rounds != nil && self.max_rounds > self.current_rounds.count && self.available?
   end
 
+  #user method to list all other available players
   def other_available_players
     @other_available_players = User.possible_players.select { |player| player.id != self.id }
   end
 
+  #user method to check if in a particular round as player
   def in_round?(round)
     round.users.where(:id => self.id).exists?
   end
 
+  #class method to list all currently eligible players
   def self.possible_players
   	@possible_players = User.select { |player| player.eligible? }
   end

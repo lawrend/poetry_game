@@ -4,8 +4,12 @@ class RoundsController < ApplicationController
 	def index
 		@player_rounds = current_user.rounds_as_player
 		@created_rounds = current_user.created_rounds
-		@created_active_rounds = current_user.created_and_active
-		@created_inactive_rounds = current_user.created_and_inactive
+		@created_and_active_open = current_user.created_and_active_and_open
+		@created_and_inactive = current_user.created_and_inactive
+		@player_rounds_with_non_submitted = current_user.player_rounds_with_non_submitted_poem
+		@created_not_open_rounds_with_non_submitted = current_user.created_and_not_open_with_non_submitted_poem
+		@player_rounds_with_submitted = current_user.player_rounds_with_submitted_poems
+		@created_rounds_not_open_with_submitted = current_user.created_and_not_open_with_submitted_poem
 
 		#if @rounds.empty? && @created_rounds.empty?
 		#	flash[:notice] = "You ain't got no rounds!"
