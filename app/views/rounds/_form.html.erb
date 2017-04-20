@@ -1,3 +1,4 @@
+<div class="container">
 <%= form_for(@round) do |f| %>
   <% if @round.errors.any? %>
     <div id="error_explanation">
@@ -10,37 +11,37 @@
 	</div>
   <% end %>
   
-  <p class="tag_line">Let's Set Up A Poem!!</p>
-  <div class="field">
-    <p class="attn1">The Title of the Poem Shall Be...</p>
+  <h2>Let's Set Up A Poem!!</h2>
+  <div class="container">
+    <p class="lead">The Title of the Poem Shall Be...</p>
     <%= f.text_field :title %><br>
-
-    <p class="attn1">The Number of Syllables In The Lines Shall Be...</p>
-    <div class="syllables">
-    Line 1:
-    <%= f.number_field :line1_syllable_count, :in => 1..10 %><br>
-    Line 2: 
-    <%= f.number_field :line2_syllable_count, :in => 0..10 %><br>
-    Line 3: 
-    <%= f.number_field :line3_syllable_count, :in => 0..10 %><br>
-    Line 4: 
-    <%= f.number_field :line4_syllable_count, :in => 0..10 %><br>
-    Line 5: 
-    <%= f.number_field :line5_syllable_count, :in => 0..10 %><br>
-    Line 6: 
-    <%= f.number_field :line6_syllable_count, :in => 0..10 %><br>
-    Line 7: 
-    <%= f.number_field :line7_syllable_count, :in => 0..10 %><br>
-    Line 8: 
-    <%= f.number_field :line8_syllable_count, :in => 0..10 %><br>
-    Line 9: 
-    <%= f.number_field :line9_syllable_count, :in => 0..10 %><br>
-    Line 10: 
-    <%= f.number_field :line10_syllable_count, :in => 0..10 %><br>
+    <p class="lead">The Number of Syllables In The Lines Shall Be...</p>
+    <div class="container">
+      Line 1:
+      <%= f.number_field :line1_syllable_count, :in => 1..10 %><br>
+      Line 2: 
+      <%= f.number_field :line2_syllable_count, :in => 0..10 %><br>
+      Line 3: 
+      <%= f.number_field :line3_syllable_count, :in => 0..10 %><br>
+      Line 4: 
+      <%= f.number_field :line4_syllable_count, :in => 0..10 %><br>
+      Line 5: 
+      <%= f.number_field :line5_syllable_count, :in => 0..10 %><br>
+      Line 6: 
+      <%= f.number_field :line6_syllable_count, :in => 0..10 %><br>
+      Line 7: 
+      <%= f.number_field :line7_syllable_count, :in => 0..10 %><br>
+      Line 8: 
+      <%= f.number_field :line8_syllable_count, :in => 0..10 %><br>
+      Line 9: 
+      <%= f.number_field :line9_syllable_count, :in => 0..10 %><br>
+      Line 10: 
+      <%= f.number_field :line10_syllable_count, :in => 0..10 %><br>
     </div>
-    <%= f.hidden_field :creator_id, :value => current_user.id %>
-  </div>
+      <%= f.hidden_field :creator_id, :value => current_user.id %>
+    </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", class: "btn btn-default" %>
   </div>
+</div>
 <% end %>

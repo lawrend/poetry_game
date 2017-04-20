@@ -1,50 +1,66 @@
-<p>Hello, <%=@player.username%>.</p>
-<hr>
-<p>You are currently participating in <%= @player.current_rounds.count %> rounds and your maximum is set to <%= @player.max_rounds %> round(s). </p>
-<ul>
-<% @player.current_rounds.each do |round| %>
-  <li>Title: <%= round.title %></li>
-  <li>Made By: <%= User.find(round.creator_id).username %></li>
+
+<div class="container">
+  <h3>Hello, <%=@player.username%>.</h3>
+  <p class="lead">You are currently participating in <%= @player.current_rounds.count %> rounds and your maximum is set to <%= @player.max_rounds %> round(s). </p>
+  <!--<ul>
+  <% @player.current_rounds.each do |round| %>
+    <li>Round Title: <%= round.title %></li>
+    <li>Made By: <%= User.find(round.creator_id).username %></li>
+    <br>
+  <% end %>
+  </ul> -->
+</div>
+
+<div class="container" style="border-top: 1px solid; border-bottom: 1px solid; margin-bottom: 10px; padding-bottom: 12px">
+  <%= form_tag("/players/#{@player.id}", method: "patch") do %>
+    <div class="form-group">
+      <div class="col-xs-1">
+        <%= number_field(:player, :max_rounds, :class => "form-control") %>
+      </div>
+      <div class="col-xs-4">
+        <%= label_tag(:player, "The maximum number of your active rounds") %>
+      </div>
+    </div> <!-- form-group-->
+    <div class="form-group">
+      <div class="col-xs-1">
+        <%= select(:player, :available, options_for_select( [['Yes!', true], ['No!', false]], :selected => @player.available), {}, :class => "form-control") %>
+      </div>
+      <div class="col-xs-4">
+        <%= label_tag(:player, "Can others add you as a poet to their rounds?") %>
+      </div>
+    </div> <!-- form-group-->
+    <!--<div class="row" style="border-bottom: 1px solid"> -->
+      <div class="col-xs-2">
+        <%= submit_tag("Update", :class => "btn btn-default btn-submit btn-md") %>
+      </div>
+    
+  <% end %>
+</div>
+
+<div class="container">
+  <p><%= link_to "Create A New Round", new_round_path %></p>
+  <p><%= link_to "All Rounds", player_rounds_path(@player.id) %></p>
+  <p><%= link_to "Your Poems", player_poems_path(@player.id) %></p>
   <br>
-<% end %>
-</ul>
-<ul>
-
-  <li><%= form_tag("/players/#{@player.id}", method: "patch") do %>
-  <%= label_tag(:player, "Maximum Rounds") %>
-  <%= number_field(:player, :max_rounds) %>
-  <%= submit_tag("Update") %>
+  <br>
+</div>
+<div class="container">
+  <% if @player.eligible? %>
+    <p>You can write some verses.</p>
+  <% else %>
+    <p>You not in the poetry game right now, yo.</p>
+  <%end%>
+</div>
+<div class="container">
+  <h3>These poets are ready to spit fire</h3>
+  <ul>
+  <% if current_user.other_available_players.empty? %>
+    <li>Ain't Nobody Around</li>
+  <% else %>
+  <% current_user.other_available_players.each do |player| %>
+      <li><%= player.username %><br></li>
   <% end %>
-    </li>
-  <li><%= form_tag("/players/#{@player.id}", method: "patch") do %>
-  <%= label_tag(:player, "I am available to play") %>
-  <%= check_box(:player, :available) %>
-  <%= submit_tag("Update") %>
   <% end %>
-    </li>
-
-
-  <li><%= link_to "Create A New Round", new_round_path %></li>
-  <li><%= link_to "View Current/Past Rounds", rounds_path%></li>
-  <li><%= link_to "test player rounds", player_rounds_path(@player.id) %></li>
-  <li><%= link_to "View Poems", poems_path %></li>
-</ul>
-<br>
-<br>
-
-<% if @player.eligible? %>
-You can write some verses.
-<% else %>
-You not in the poetry game right now, yo.
-<%end%><br>
-<h3>These poets are ready to spit fire</h3>
-<ul>
-<% if current_user.other_available_players.empty? %>
-  <li>Ain't Nobody Around</li>
-<% else %>
-<% current_user.other_available_players.each do |player| %>
-    <li><%= player.username %><br></li>
-<% end %>
-<% end %>
-</ul>
+  </ul>
+</div>
 

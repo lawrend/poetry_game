@@ -1,26 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  
   <title>PoetryGame</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <%= csrf_meta_tags %> 
 </head>
   <body>
-    <%= render 'layouts/header' %>
-    <div class="main-wrapper">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-10">
-          
+    
+  <div class="site-wrapper">
+    <div class="site-wrapper-inner">
+      <!--<div class="cover-container">-->
+      <%= render 'layouts/header' %> 
+        <div class="inner">  
           <%= render 'layouts/messages' %>
-      
           <%= yield %>
-
-          <%= render 'layouts/footer' %>
-          </div>
-        </div> <!--row-->
-      </div> <!--container-fluid-->
-    </div> <!--main-wrapper-->
+          <%= render 'layouts/footer' %>  
+        </div> <!--inner cover-->
+      <!--</div> cover-container --> 
+    </div> <!-- site-wrapper-inner -->
+  </div> <!-- site-wrapper -->
   </body>
-</html>
+  </html>

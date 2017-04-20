@@ -1,3 +1,4 @@
+<div class="container">
 <% if @player_rounds.empty? && @created_rounds.empty? %>
 	<h1>You are in no rounds and have created none.</h1>
 	<%= link_to "Home", 'player' %>
@@ -13,7 +14,7 @@
 		<h6>(These rounds can also still be edited)</h6>
 		<ul>
 		<% @created_and_inactive.each do |round| %>
-			<li>Title: <%= link_to "#{round.title}" %></li>
+			<li>Title: <%= link_to "#{round.title}", round_path(round.id) %></li>
 			<li><%= link_to "Edit", edit_round_path(round.id) %></li><br>
 		<% end %>
 		</ul>
@@ -67,3 +68,4 @@
 		<% end %>
 	<% end %>
 <% end %>
+</div>

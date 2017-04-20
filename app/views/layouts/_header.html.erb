@@ -1,4 +1,24 @@
-<nav class="navbar default-color">
+<div class="masthead clearfix">
+
+  <div class="inner">
+    <h3 class="masthead-brand">Poetry Game</h3>
+      <nav>
+        <ul class="nav masthead-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="#" >About</a></li>
+            <% if user_signed_in? %>
+                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+                <li><%= link_to "Edit Info", edit_user_registration_path %></li>
+            <% else %>
+                <li><%= link_to "Sign Up", new_user_registration_path %></li>
+                <li><%= link_to "Sign In", new_user_session_path%></li>
+            <% end %>
+        </ul>
+      </nav>
+  </div>
+</div>
+
+<!--<nav class="navbar default-color">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
@@ -39,3 +59,4 @@
         </div>
     </div>
 </nav>
+-->

@@ -105,6 +105,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  #poem from the current round
+  def current_round_poem(round)
+    self.poems.find_by(:round_id => round.id)
+  end
+
   def eligible?
   	self.max_rounds != nil && self.max_rounds > self.current_rounds.count && self.available?
   end

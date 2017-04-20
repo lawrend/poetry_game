@@ -1,14 +1,21 @@
+<div class="container">
 <% @rounds.each do |round| %>
-	<h3><%= round.title %></h3>
+	<div class="row">
+		<h3><div class="col-sm-12"><%= round.title %></div></h3>
+	</div> <!-- row -->
+	<div class="row">
+		<h4><div class="col-sm-12"> by <%= User.find(round.creator_id).username %></div></h4>
+	</div> <!-- row -->
 	<ul>
 	<% if round.poems.empty? %>
 		<li>There are no poets in this round yet</li>
 	<% else %>
 		<% round.poems.each do |poem| %>
-		<li><%=link_to "#{User.find(poem.user_id).username}", poem_path(poem) %></li>
+		<li><%=link_to "#{User.find(poem.user_id).username}'s poem", poem_path(poem) %></li>
 		<% end %>
 	<% end %>
 	</ul>
 <% end %>
 <br>
 <%= link_to "Home", '/player' %>
+</div>
