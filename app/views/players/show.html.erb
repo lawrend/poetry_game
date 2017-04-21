@@ -2,13 +2,6 @@
 <div class="container">
   <h3>Hello, <%=@player.username%>.</h3>
   <p class="lead">You are currently participating in <%= @player.current_rounds.count %> rounds and your maximum is set to <%= @player.max_rounds %> round(s). </p>
-  <!--<ul>
-  <% @player.current_rounds.each do |round| %>
-    <li>Round Title: <%= round.title %></li>
-    <li>Made By: <%= User.find(round.creator_id).username %></li>
-    <br>
-  <% end %>
-  </ul> -->
 </div>
 
 <div class="container" style="border-top: 1px solid; border-bottom: 1px solid; margin-bottom: 10px; padding-bottom: 12px">
@@ -18,7 +11,7 @@
         <%= number_field(:player, :max_rounds, :class => "form-control") %>
       </div>
       <div class="col-xs-4">
-        <%= label_tag(:player, "The maximum number of your active rounds") %>
+        <%= label_tag(:player, "The maximum number of your active rounds", :class => "control-label") %>
       </div>
     </div> <!-- form-group-->
     <div class="form-group">
@@ -26,7 +19,7 @@
         <%= select(:player, :available, options_for_select( [['Yes!', true], ['No!', false]], :selected => @player.available), {}, :class => "form-control") %>
       </div>
       <div class="col-xs-4">
-        <%= label_tag(:player, "Can others add you as a poet to their rounds?") %>
+        <%= label_tag(:player, "Can others add you as a poet to their rounds?", :class => "control-label") %>
       </div>
     </div> <!-- form-group-->
     <!--<div class="row" style="border-bottom: 1px solid"> -->

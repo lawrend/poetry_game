@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413065529) do
+ActiveRecord::Schema.define(version: 20170420024936) do
 
   create_table "poems", force: :cascade do |t|
     t.datetime "created_at",                            null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20170413065529) do
     t.datetime "updated_at",                            null: false
     t.integer  "creator_id"
     t.string   "title"
-    t.integer  "line_count",            default: 1
+    t.integer  "line_count"
     t.boolean  "active",                default: false
     t.integer  "line1_syllable_count",  default: 1
     t.integer  "line2_syllable_count",  default: 0
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20170413065529) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.integer  "max_rounds",             default: 1
+    t.integer  "max_rounds",             default: 5
     t.string   "username"
     t.boolean  "available",              default: true
   end
