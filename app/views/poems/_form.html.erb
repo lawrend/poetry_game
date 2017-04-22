@@ -1,91 +1,79 @@
+
 <% if @poem.user_id == current_user.id %>
 
-<%= bootstrap_form_for(@poem) do |f| %>
-<% if @poem.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> stopped this poem from going forward:</h2>
-      <ul>
-	      <% @poem.errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
-	      <% end %>
-	  </ul>
-	</div>
-<% end %>
-  <%= @poem.title %>
-  <div class="field">
-    Line 1 Syllables = <%= @poem.line1_syllable_count %>
-    <%= f.text_field :line1 %><br>
-
-    <% if @poem.line2_syllable_count != 0 %>
-    Line 2 Syllables = <%= @poem.line2_syllable_count %>
-    <%= f.text_field :line2 %><br>
+  <%= form_for(@poem, :html => {:class => "form-horizontal"}) do |f| %>
+    <% if @poem.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@post.errors.count, "error") %> stopped this poem from going forward:</h2>
+        <ul>
+         <% @poem.errors.full_messages.each do |msg| %>
+           <li><%= msg %></li>
+         <% end %>
+        </ul>
+       </div>
     <% end %>
 
-    <% if @poem.line3_syllable_count != 0 %>
-    Line 3 Syllables = <%= @poem.line3_syllable_count %>
-    <%= f.text_field :line3 %><br>
-    <% end %>
+    <p class="lead"><%= @poem.title %></p>
 
-    <% if @poem.line4_syllable_count != 0 %>
-    Line 4 Syllables = <%= @poem.line4_syllable_count %>
-    <%= f.text_field :line4 %><br>
-    <% end %>
-
-    <% if @poem.line5_syllable_count != 0 %>
-    Line 5 Syllables = <%= @poem.line5_syllable_count %>
-    <%= f.text_field :line5 %><br>
-    <% end %>
-
-    <% if @poem.line6_syllable_count != 0 %>
-    Line 6 Syllables = <%= @poem.line6_syllable_count %>
-    <%= f.text_field :line6 %><br>
-    <% end %>
-
-    <% if @poem.line7_syllable_count != 0 %>
-    Line 7 Syllables = <%= @poem.line7_syllable_count %>
-    <%= f.text_field :line7 %><br>
-    <% end %>
-
-    <% if @poem.line8_syllable_count != 0 %>
-    Line 8 Syllables = <%= @poem.line8_syllable_count %>
-    <%= f.text_field :line8 %><br>
-    <% end %>
-
-    <% if @poem.line9_syllable_count != 0 %>
-    Line 9 Syllables = <%= @poem.line9_syllable_count %>
-    <%= f.text_field :line9 %><br>
-    <% end %>
-
-    <% if @poem.line10_syllable_count != 0 %>
-    Line 10 Syllables = <%= @poem.line10_syllable_count %>
-    <%= f.text_field :line10 %><br>
+    <% @poem_round = Round.find(@poem.round_id) %> 
+    <% n=@poem.round.line_count %>
+    <% @lines = [*1..n] %>
+    
+    <% @lines.each do |line| %>
+      <% linenum = "line#{line}" %>
+      <% syl_count = "#{linenum}_syllable_count" %>
+      <% syl_count_label = @poem.send(syl_count) %>
+      <div class="form-group">
+        <%= f.label :"#{linenum}", "Line #{line} should have #{syl_count_label} syllables", class: "col-sm-3 control-label" %>
+        <div class="col-sm-7">
+          <%= f.text_field :"#{linenum}", class: "form-control" %>
+        </div>
+      </div>
     <% end %>
     
-  </div>
-  <div class="field">
-  Set the status of your poem:<br>
-  <%= f.label :creator_only, "Only you can see the poem" %>
-  <%= f.radio_button :status, "creator_only" %>
-  <%= f.label :round_participants, "Only those players in the round can see the poem" %>
-  <%= f.radio_button :status, "round_participants" %>
-  <%= f.label :open_to_all, "Everyone can see the poem" %>
-  <%= f.radio_button :status, "open_to_all" %>
-  </div>
+    <div class="form-group" style="border-top: 1px solid; border-bottom: 1px solid; padding-top: 10px">
+      <div class="col-sm-3">
+        <p class="lead">Who can see your poem?</p>
+      </div>
+      <div class="radio">
+        <div class="col-sm-1">
+          <%=f.radio_button :status, "creator_only" %>Only You
+        </div> 
+        <div class="col-sm-2">
+          <%=f.radio_button :status, "round_participants" %>The Poets In The Round
+        </div>
+        <div class="col-sm-2">
+          <%=f.radio_button :status, "open_to_all" %>Everyone
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-  Ready to submit your form? THIS CANNOT BE UNDONE!<br>
-  <%= f.label :submitted, "Yes, I am ready!" %>
-  <%= f.check_box :submitted %>
-  </div>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+          <%= f.check_box :submitted %><p>Check ONLY IF Poem Is Done: WARNING! NO EDITS IF YOU SUBMIT WITH THIS BOX CHECKED!!!</p>
+        </div>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<%end%>
+
+    <div class="form-group">
+      <%= f.submit "Submit", class: "btn btn-default" %>
+    </div>
+
+  <% end %>
 
 <% else %>
 
-<h2>Sorry, this isn't your poem to write</h2>
-<%= link_to "Home", player_path(current_user.id) %>
+  <h2>Sorry, this isn't your poem to write</h2>
+
+  <div class="container">
+    <%= link_to "Home", player_path(current_user.id) %>
+  </div>
 
 <% end %>
+
+
+
+

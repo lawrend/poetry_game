@@ -11,11 +11,6 @@ class RoundsController < ApplicationController
 		@player_rounds_with_submitted = current_user.player_rounds_with_submitted_poems
 		@created_rounds_not_open_with_submitted = current_user.created_and_not_open_with_submitted_poem
 
-		#if @rounds.empty? && @created_rounds.empty?
-		#	flash[:notice] = "You ain't got no rounds!"
-		#	@player = current_user
-		#	redirect_to player_path(current_user.id)
-		#end
 	end
 
 	def new
@@ -30,7 +25,7 @@ class RoundsController < ApplicationController
 	def create
 	  @round = Round.new(round_params)
 	    if @round.save
-	      redirect_to @round
+	      redirect_to edit_round_path(@round.id)
 	    else
 	      redirect_to root_path
 	    end

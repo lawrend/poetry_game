@@ -1,47 +1,93 @@
-<div class="container">
-<%= form_for(@round) do |f| %>
+
+<%= form_for(@round, :html => {:class => "form-horizontal"}) do |f| %>
   <% if @round.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> stopped this round from going forward:</h2>
       <ul>
-	      <% @round.errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
-	      <% end %>
-	  </ul>
-	</div>
+        <% @round.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h1>Make a title for the poems of this round...</h1>
+  <div class="form-group">
+    <%= f.text_field :title, :class => "form-control" %><br>
+  </div>
+  <p class="lead">How Many Lines of Poetry Shall The Poems Have?</p>
+  <div class="form-group">
+    <div class="radio">
+      <div class="col-sm-1">
+        <%= f.radio_button :line_count, 1%>1 
+      </div>
+      <div class="col-sm-1">
+        <%= f.radio_button :line_count, 2%>2 
+      </div>
+      <div class="col-sm-1">
+        <%= f.radio_button :line_count, 3%>3 
+      </div>
+      <div class="col-sm-1">
+        <%= f.radio_button :line_count, 4%>4 
+      </div>
+      <div class="col-sm-1">
+        <%= f.radio_button :line_count, 5%>5 
+      </div>
+      <div class="col-sm-1">
+        <%= f.radio_button :line_count, 6%>6 
+      </div>
+      <div class="col-sm-1">
+        <%= f.radio_button :line_count, 7%>7 
+      </div>
+      <div class="col-sm-1">
+        <%= f.radio_button :line_count, 8%>8 
+      </div>
+      <div class="col-sm-1">
+        <%= f.radio_button :line_count, 9%>9 
+      </div>
+      <div class="col-sm-1">
+        <%= f.radio_button :line_count, 10%>10 
+      </div>
+    </div> <!-- radio -->
+  </div> <!-- form-group-->
+  
+  <% if @round.line_count == nil %>
+    <%= f.hidden_field :creator_id, :value => current_user.id %>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-1">
+        <%= f.submit "Generate Lines", class: "btn btn-default" %>
+      </div>
+    </div>
+
+  <% else %>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-1">
+        <%= f.submit "Update Lines", class: "btn btn-default" %>
+      </div>
+    </div>
+    
+    <p class="lead">The Number of Syllables In The Lines Shall Be...</p>
+    <% n = @round.line_count %>
+    <% @lines = [*1..n] %>
+    <% @lines.each do |line| %>
+    <% syl_count = "line#{line}_syllable_count" %>
+    <% line_label = "Line #{line}: " %>
+    <div class="form-group">
+      <%= f.label :"#{syl_count}", "#{line_label}", class: "col-sm-2 control-label" %>
+        <div class="col-sm-1">
+          <%= f.number_field :"#{syl_count}", :in => 1..10, class: "form-control" %>
+        </div>
+    </div>
+
+    <% end %>
+   
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-1">
+        <%= f.submit "Submit", class: "btn btn-default" %>
+      </div>
+    </div> <!-- form-group-->
+
   <% end %>
   
-  <h2>Let's Set Up A Poem!!</h2>
-  <div class="container">
-    <p class="lead">Make a title for the poems of this round...</p>
-    <%= f.text_field :title %><br>
-    <p class="lead">The Number of Syllables In The Lines Shall Be...</p>
-    <div class="container">
-      Line 1:
-      <%= f.number_field :line1_syllable_count, :in => 1..10 %><br>
-      Line 2: 
-      <%= f.number_field :line2_syllable_count, :in => 0..10 %><br>
-      Line 3: 
-      <%= f.number_field :line3_syllable_count, :in => 0..10 %><br>
-      Line 4: 
-      <%= f.number_field :line4_syllable_count, :in => 0..10 %><br>
-      Line 5: 
-      <%= f.number_field :line5_syllable_count, :in => 0..10 %><br>
-      Line 6: 
-      <%= f.number_field :line6_syllable_count, :in => 0..10 %><br>
-      Line 7: 
-      <%= f.number_field :line7_syllable_count, :in => 0..10 %><br>
-      Line 8: 
-      <%= f.number_field :line8_syllable_count, :in => 0..10 %><br>
-      Line 9: 
-      <%= f.number_field :line9_syllable_count, :in => 0..10 %><br>
-      Line 10: 
-      <%= f.number_field :line10_syllable_count, :in => 0..10 %><br>
-    </div>
-      <%= f.hidden_field :creator_id, :value => current_user.id %>
-    </div>
-  <div class="actions">
-    <%= f.submit "Submit", class: "btn btn-default" %>
-  </div>
-</div>
 <% end %>
