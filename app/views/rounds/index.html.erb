@@ -1,3 +1,19 @@
+<div class="jumbotron">
+    <div class="containter">
+      <h3>Hello, <%=current_user.username%>.</h3>
+      <p class="lead">
+        You are currently in <%= current_user.current_rounds.count %> rounds and your maximum is set to <%= current_user.max_rounds %> round(s).
+      </p>
+      <div class="lead">
+      <% if current_user.eligible? %>
+        <p>You can write some verses.</p>
+      <% else %>
+        <p>You not in the poetry game right now, yo.</p>
+      <%end%>
+    </div>
+    </div>
+</div>
+
 <div class="container">
 <% if @player_rounds.empty? && @created_rounds.empty? %>
 	<h1>You are in no rounds and have created none.</h1>
@@ -34,7 +50,7 @@
 			<% end %>
 		</ul>
 	<% end %>
-	<br> 
+	<br>
 	<% if !@created_not_open_rounds_with_non_submitted.empty? %>
 		<h5>Rounds You Closed But Still Need Your Poem</h5>
 		<ul>

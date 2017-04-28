@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class= "full" lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,16 +16,16 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="container-fluid site-wrapper">
 
-    <%= render 'layouts/header' %>
+    <div class="container-fluid site-wrapper">
+        <%= render 'layouts/header' %>
 
         <%= render 'layouts/messages' %>
-        <%= yield %>
-        <%= render 'layouts/footer' %>
-      </div>
-    </div>
 
-</div>
+        <%= yield %>
+    </div>
+        <%= render 'layouts/footer' %>
+
+
   </body>
   </html>

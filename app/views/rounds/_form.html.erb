@@ -10,8 +10,9 @@
       </ul>
     </div>
   <% end %>
-
-  <h1>Make a title for the poems of this round...</h1>
+ <div class="jumbotron">
+   <div class="container">
+  <h2>Make a title for the poems of this round...</h2>
   <div class="form-group">
     <%= f.text_field :title, :class => "form-control" %><br>
   </div>
@@ -22,12 +23,12 @@
       <% @nums.each do |num| %>
         <div class="col-sm-1">
           <%= f.radio_button :line_count, "#{num}" %><%= num %>
-        </div>  
+        </div>
       <% end %>
-      
+
     </div> <!-- radio -->
   </div> <!-- form-group-->
-  
+
   <% if @round.line_count == nil %>
     <%= f.hidden_field :creator_id, :value => current_user.id %>
     <div class="form-group">
@@ -43,28 +44,31 @@
         <%= f.submit "Update Lines", class: "btn btn-default" %>
       </div>
     </div>
-    
+  </div>
+</div>
+<div class="container">
     <p class="lead">The Number of Syllables In The Lines Shall Be...</p>
     <% n = @round.line_count %>
     <% @lines = [*1..n] %>
     <% @lines.each do |line| %>
-    <% syl_count = "line#{line}_syllable_count" %>
-    <% line_label = "Line #{line}: " %>
-    <div class="form-group">
-      <%= f.label :"#{syl_count}", "#{line_label}", class: "col-sm-2 control-label" %>
-        <div class="col-sm-1">
-          <%= f.number_field :"#{syl_count}", :in => 0..10, class: "form-control" %>
-        </div>
-    </div>
-
+      <% syl_count = "line#{line}_syllable_count" %>
+      <% line_label = "Line #{line}: " %>
+      <div class="form-group">
+        <%= f.label :"#{syl_count}", "#{line_label}", class: "col-sm-2 control-label" %>
+          <div class="col-sm-1">
+            <%= f.number_field :"#{syl_count}", :in => 0..10, class: "form-control" %>
+          </div>
+      </div>
     <% end %>
-   
+  </div>
+
+  <div class="container">
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-1">
         <%= f.submit "Submit", class: "btn btn-default" %>
       </div>
     </div> <!-- form-group-->
-
+  </div>
   <% end %>
-  
+
 <% end %>
