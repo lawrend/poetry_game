@@ -2,7 +2,7 @@
 <%= form_for(@round, :html => {:class => "form-horizontal"}) do |f| %>
   <% if @round.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> stopped this round from going forward:</h2>
+      <h2><%= pluralize(@round.errors.count, "error") %> stopped this round from going forward:</h2>
       <ul>
         <% @round.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -18,36 +18,13 @@
   <p class="lead">How Many Lines of Poetry Shall The Poems Have?</p>
   <div class="form-group">
     <div class="radio">
-      <div class="col-sm-1">
-        <%= f.radio_button :line_count, 1%>1 
-      </div>
-      <div class="col-sm-1">
-        <%= f.radio_button :line_count, 2%>2 
-      </div>
-      <div class="col-sm-1">
-        <%= f.radio_button :line_count, 3%>3 
-      </div>
-      <div class="col-sm-1">
-        <%= f.radio_button :line_count, 4%>4 
-      </div>
-      <div class="col-sm-1">
-        <%= f.radio_button :line_count, 5%>5 
-      </div>
-      <div class="col-sm-1">
-        <%= f.radio_button :line_count, 6%>6 
-      </div>
-      <div class="col-sm-1">
-        <%= f.radio_button :line_count, 7%>7 
-      </div>
-      <div class="col-sm-1">
-        <%= f.radio_button :line_count, 8%>8 
-      </div>
-      <div class="col-sm-1">
-        <%= f.radio_button :line_count, 9%>9 
-      </div>
-      <div class="col-sm-1">
-        <%= f.radio_button :line_count, 10%>10 
-      </div>
+      <% @nums = [*1..10] %>
+      <% @nums.each do |num| %>
+        <div class="col-sm-1">
+          <%= f.radio_button :line_count, "#{num}" %><%= num %>
+        </div>  
+      <% end %>
+      
     </div> <!-- radio -->
   </div> <!-- form-group-->
   
@@ -76,7 +53,7 @@
     <div class="form-group">
       <%= f.label :"#{syl_count}", "#{line_label}", class: "col-sm-2 control-label" %>
         <div class="col-sm-1">
-          <%= f.number_field :"#{syl_count}", :in => 1..10, class: "form-control" %>
+          <%= f.number_field :"#{syl_count}", :in => 0..10, class: "form-control" %>
         </div>
     </div>
 

@@ -103,3 +103,17 @@ ROLES (CanCanCan? or just Devise?)
 	
 	Other - restricted unless signed up or in
 
+TODO:
+	==Destroy==
+	Destroy Rounds
+	Destroy Poems
+	Destroy User - their rounds? Poems from those rounds?
+
+	==OmniAuth==
+
+	
+
+
+
+	
+

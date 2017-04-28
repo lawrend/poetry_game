@@ -1,0 +1,42 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+
+body {
+  min-height: 2000px;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  color: 111;
+  background-color: #dfdfdf;
+  text-align: auto;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+.jumbotron {
+  background-color: inherit;
+}
+
+.navbar-right > li {
+  font-size: 22px;
+}
+
+
+
+.heyhey {
+  font-size: 30px;
+  color: #2b2;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: #111;
+  text-shadow: none; /* Prevent inheritance from `body` */
+  background-color: #4b4;
+  border: 1px solid #fff;
+}
+
+.site-wrapper {
+  -webkit-box-shadow: inset 0 10px 25px -6px rgba(0,0,0,.5);
+          box-shadow: inset 0 10px 25px -6px rgba(0,0,0,.5);
+
+}

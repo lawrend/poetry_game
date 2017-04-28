@@ -1,9 +1,49 @@
-<div class="masthead clearfix">
 
-  <div class="inner">
-    <h3 class="masthead-brand">Poetry Game</h3>
-      <nav>
-        <ul class="nav masthead-nav">
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">The Poetry Game</a>
+    </div>
+    <div id="navbarCollapse" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="#" >About</a></li>
+          <% if user_signed_in? %>
+              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+              <li><%= link_to "Edit Info", edit_user_registration_path %></li>
+          <% else %>
+              <li><%= link_to "Sign Up", new_user_registration_path %></li>
+              <li><%= link_to "Sign In", new_user_session_path%></li>
+          <% end %>
+        <!--<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">Nav header</li>
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>-->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+        <li><a>Hello, <%=current_user.username %>!</a></li>
+        <% end %>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<!--
           <li class="active"><a href="/">Home</a></li>
           <li><a href="#" >About</a></li>
             <% if user_signed_in? %>
@@ -15,48 +55,8 @@
             <% end %>
         </ul>
       </nav>
+    </div>
   </div>
 </div>
 
-<!--<nav class="navbar default-color">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">The Poetry Game</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
-                <li><a href="#" >About</a></li>
-                <% if user_signed_in? %>
-                  <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-                  <li><%= link_to "Edit Info", edit_user_registration_path %></li>
-                <% else %>
-                  <li><%= link_to "Sign Up", new_user_registration_path %></li>
-                  <li><%= link_to "Sign In", new_user_session_path%></li>
-                <% end %>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 -->

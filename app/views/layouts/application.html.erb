@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  
-  <title>PoetryGame</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="doulgas">
+    <link rel="icon" href="../../favicon.ico">
 
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %> 
-</head>
+    <title>The Poetry Game</title>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
   <body>
-    
-  <div class="site-wrapper">
-    <div class="site-wrapper-inner">
-      <!--<div class="cover-container">-->
-      <%= render 'layouts/header' %> 
-        <!--<div class="inner">  -->
-        <div class="container">
-          <%= render 'layouts/messages' %>
-          <%= yield %>
-          <%= render 'layouts/footer' %>  
-        <!--</div> inner-->
-      <!--</div> cover-container -->
-      </div> 
-    </div> <!-- site-wrapper-inner -->
-  </div> <!-- site-wrapper -->
+    <div class="container-fluid site-wrapper">
+
+    <%= render 'layouts/header' %>
+
+        <%= render 'layouts/messages' %>
+        <%= yield %>
+        <%= render 'layouts/footer' %>
+      </div>
+    </div>
+
+</div>
   </body>
   </html>
