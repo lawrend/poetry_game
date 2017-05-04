@@ -1,23 +1,16 @@
 
 
-<div class="jumbotron">
-    <div class="containter">
-      <h3>Hello, <%=@player.username%>.</h3>
-      <p class="lead">
-        You are currently in <%= @player.current_rounds.count %> rounds and your maximum is set to <%= current_user.max_rounds %> round(s).
-      </p>
-      <div class="lead">
-      <% if @player.eligible? %>
-        <p>You can write some verses.</p>
-      <% else %>
-        <p>You not in the poetry game right now, yo.</p>
-      <%end%>
-    </div>
-    </div>
+<h3>Hello, <%=@player.username%>.</h3>
+<p class="lead">
+  You are currently in <%= @player.current_rounds.count %> rounds and your maximum is set to <%= current_user.max_rounds %> round(s).
+</p>
+<div class="lead">
+  <% if @player.eligible? %>
+    <p>You can write some verses.</p>
+  <% else %>
+    <p>You not in the poetry game right now, yo.</p>
+  <%end%>
 </div>
-
-
-
 
 <div class="container" style="border-top: 1px solid; border-bottom: 1px solid; margin-bottom: 10px; padding-bottom: 12px">
   <%= form_tag("/players/#{@player.id}", method: "patch") do %>

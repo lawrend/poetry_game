@@ -1,18 +1,16 @@
-<div class="jumbotron">
-    <div class="containter">
-      <h3>Hello, <%=current_user.username%>.</h3>
-      <p class="lead">
-        You are currently in <%= current_user.current_rounds.count %> rounds and your maximum is set to <%= current_user.max_rounds %> round(s).
-      </p>
-      <div class="lead">
-      <% if current_user.eligible? %>
-        <p>You can write some verses.</p>
-      <% else %>
-        <p>You not in the poetry game right now, yo.</p>
-      <%end%>
-    </div>
-    </div>
+
+<h3>Hello, <%=current_user.username%>.</h3>
+<p class="lead">
+  You are currently in <%= current_user.current_rounds.count %> rounds and your maximum is set to <%= current_user.max_rounds %> round(s).
+</p>
+<div class="lead">
+  <% if current_user.eligible? %>
+    <p>You can write some verses.</p>
+  <% else %>
+    <p>You not in the poetry game right now, yo.</p>
+  <%end%>
 </div>
+
 
 <div class="container">
 <% if @player_rounds.empty? && @created_rounds.empty? %>
@@ -52,7 +50,7 @@
 	<% end %>
 	<br>
 	<% if !@created_not_open_rounds_with_non_submitted.empty? %>
-		<h5>Rounds You Closed But Still Need Your Poem</h5>
+		<h5>Rounds You Closed But Still Need Your Poetry Skills</h5>
 		<ul>
 			<% @created_not_open_rounds_with_non_submitted.each do |round| %>
 				<li>Round Title: <%= link_to "#{round.title}", round_path(round.id) %></li>
@@ -62,11 +60,11 @@
 	<% end %>
 
 	<% if !@player_rounds_with_non_submitted.empty? %>
-		<h3>Rounds You Are In Awaiting Your Poem</h3>
+		<h3>Rounds You Are In Awaiting Your Poetry Skills</h3>
 		<ul>
 			<% @player_rounds_with_non_submitted.each do |round| %>
 				<li>Round Title: <%= link_to "#{round.title}", round_path(round.id) %>, created by <%= User.find(round.creator_id).username %></li>
-				<li><%= link_to "Work on your poem", edit_poem_path(current_user.current_round_poem.id) %></li><br>
+				<li><%= link_to "Work on your poem", edit_poem_path(current_user.current_round_poem(round).id) %></li><br>
 			<% end %>
 		</ul>
 	<% end %>

@@ -19,13 +19,14 @@
 
     <div class="container-fluid site-wrapper">
         <%= render 'layouts/header' %>
-
-        <%= render 'layouts/messages' %>
-
-        <%= yield %>
-    </div>
+      <div class="container">
+        <div class="jumbotron">
+          <%= render 'layouts/messages' %>
+          <%= yield %>
+        </div>
+      </div>
         <%= render 'layouts/footer' %>
-
+    </div>
 
   </body>
   </html>

@@ -1,4 +1,3 @@
-<div class="container">
 
 <h1><%= @round.title %></h1>
 
@@ -12,7 +11,7 @@
 	<% @round.users.each do |player| %>
   	<li><%= player.username %></li>
   	<li><%= link_to "#{player.current_round_poem(@round).title}", poem_path(player.current_round_poem(@round).id) %></li>
-	<% end %>  
+	<% end %>
 <% end %>
 <% if @round.creator_id == current_user.id %>
 	<li><%= link_to "Add Some Poets To The Round?", "add_players/#{@round.id}" %></li>
@@ -20,4 +19,4 @@
 </ul>
 <br>
 <%= link_to "Home", player_path(current_user.id) %>
-</div>
+	

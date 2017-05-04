@@ -61,7 +61,7 @@ body {
 }
 
 .full {
-    background: url('spilled_ink.jpg') no-repeat center center scroll;
+    background: url('spilled_ink.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
