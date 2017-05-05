@@ -4,15 +4,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates_uniqueness_of :username
-  has_many :poems, inverse_of: :user 
+  has_many :poems, inverse_of: :user, dependent: :destroy
   has_many :participating_rounds, through: :poems, source: :round
-  has_many :created_rounds, :foreign_key => "creator_id", :class_name => "Round"
-  
+  has_many :created_rounds, :foreign_key => "creator_id", :class_name => "Round", dependent: :destroy
+
   #rounds where user is a player but not creator
   def rounds_as_player
     self.participating_rounds.select {|round| round.creator_id != self.id }
   end
-  
+
   #rounds where user is creator and round is active
   def created_and_active
     self.created_rounds.where(:active => true)
@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   #all non submitted poems written as a player
   def player_non_submitted_poems
     self.non_submitted_poems.select do |poem|
-      Round.find(poem.round_id).creator_id != self.id 
+      Round.find(poem.round_id).creator_id != self.id
     end
   end
 

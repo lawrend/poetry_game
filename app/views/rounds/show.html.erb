@@ -5,18 +5,17 @@
 
 <h4>Participants</h4>
 <ul>
-<% if @round.users.empty? %>
-	<li>There are no poets on this yet.</li>
-<% else %>
-	<% @round.users.each do |player| %>
-  	<li><%= player.username %></li>
-  	<li><%= link_to "#{player.current_round_poem(@round).title}", poem_path(player.current_round_poem(@round).id) %></li>
+	<% if @round.users.empty? %>
+		<li>There are no poets on this yet.</li>
+	<% else %>
+		<% @round.users.each do |player| %>
+	  	<li><%= player.username %></li>
+	  	<li><%= link_to "#{player.current_round_poem(@round).title}", poem_path(player.current_round_poem(@round).id) %></li>
+		<% end %>
 	<% end %>
-<% end %>
-<% if @round.creator_id == current_user.id %>
-	<li><%= link_to "Add Some Poets To The Round?", "add_players/#{@round.id}" %></li>
-<% end %>
+	<% if @round.creator_id == current_user.id %>
+		<li><%= link_to "Add Some Poets To The Round?", "add_players/#{@round.id}" %></li>
+	<% end %>
 </ul>
 <br>
 <%= link_to "Home", player_path(current_user.id) %>
-	

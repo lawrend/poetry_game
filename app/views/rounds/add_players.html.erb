@@ -1,15 +1,33 @@
-<h1><%= @round.title %></h1>
+<h2>"<%= @round.title %>"</h3>
 
 <% if @round.creator_id == current_user.id %>
- <%= form_for(@round) do |f| %>
- 	<div class="field">
-	<%= f.label :poem_user_ids, "Poets on the joint" %>
-	<%= f.collection_check_boxes(:poem_user_ids, current_user.other_available_players, :id, :username, checked: @round.users.map(&:id)) %>
-	<%= f.hidden_field(:active, :value => true) %>
-   </div>
+ <%= form_for(@round, :html => {:class => "form-horizontal"}) do |f| %>
 
-   <div class="actions">
-   	<%= f.submit "Get it Going" %>
+	   <%= f.label :poem_user_ids, "Poets on the joint", class: "form-check-label" %>
+
+     <!--<%= f.label :poem_user_ids, "Poets in this round", class: "col-sm-4 form-check-label" %>-->
+
+       <%= f.collection_check_boxes(:poem_user_ids, current_user.other_available_players, :id, :username, checked: @round.users.map(&:id)) do |b| %>
+        <div class="row">
+          <%= b.label(class: "check-box") do %>
+            <div class="sm-col-4">
+              <%= b.check_box(class: "check-box")%>
+            </div>
+
+            <div class="sm-col-8">
+              <%= b.object.username %>
+            </div>
+          <% end %>
+        </div>
+        <% end %>
+
+	     <%= f.hidden_field(:active, :value => true) %>
+
+
+   <div class="form-group">
+     <div class="col-sm-1">
+       <%= f.submit "Get it Going", class: "btn btn-default" %>
+     </div>
    </div>
  <% end %>
 

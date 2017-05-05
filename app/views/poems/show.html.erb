@@ -10,14 +10,13 @@ by<br>
 	<p>Sorry, this poem isn't ready for the public</p>
 <% elsif @poem.round_participants? %>
 	<% if current_user.in_round?(Round.find(@poem.round_id)) %>
-	You can read this because you are in the round<br>
-	<%= render 'poem_text' %><br>
+		You can read this because you are in the round<br>
+		<%= render 'poem_text' %><br>
 	<% else %>
-	you can't read this because you aren't in the round<br>
+		you can't read this because you aren't in the round<br>
 	<% end %>
 <% elsif @poem.open_to_all? %>
     <%= render 'poem_text' %>
 <% end %>
-
 
 <%= link_to "Home", player_path(current_user) %>

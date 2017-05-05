@@ -1,8 +1,6 @@
 
 <h3>Hello, <%=current_user.username%>.</h3>
-<p class="lead">
-  You are currently in <%= current_user.current_rounds.count %> rounds and your maximum is set to <%= current_user.max_rounds %> round(s).
-</p>
+<p class="lead">You are currently in <%= current_user.current_rounds.count %> rounds and your maximum is set to <%= current_user.max_rounds %> round(s).</p>
 <div class="lead">
   <% if current_user.eligible? %>
     <p>You can write some verses.</p>
@@ -13,81 +11,82 @@
 
 
 <div class="container">
-<% if @player_rounds.empty? && @created_rounds.empty? %>
-	<h1>You are in no rounds and have created none.</h1>
-	<%= link_to "Home", 'player' %>
-<% else %>
-	<h1>Ongoing Rounds</h1>
-	<% if @created_rounds.empty? %>
-		<h5>You have not created any rounds yet!</h5>
-	<% else %>
-		<h3>Rounds You Created</h3>
-	<% end %>
+  <% if @player_rounds.empty? && @created_rounds.empty? %>
+  	<h1>You are in no rounds and have created none.</h1>
+  	<%= link_to "Home", 'player' %>
+  <% else %>
+  	<h1>Ongoing Rounds</h1>
+  	<% if @created_rounds.empty? %>
+  		<h5>You have not created any rounds yet!</h5>
+  	<% else %>
+  		<h3>Rounds You Created</h3>
+  	<% end %>
 
-	<% if !@created_and_inactive.empty? %>
-		<h5>Rounds Needing Poets</h5>
-		<ul>
-		<% @created_and_inactive.each do |round| %>
-			<li>Title: <%= link_to "#{round.title}", round_path(round.id) %></li>
-			<li><%= link_to "Change Poem Structure", edit_round_path(round.id) %></li>
-			<li><%= link_to "Add Poets And Start Round!", "/rounds/add_players/#{round.id}" %></li><br>
-		<% end %>
-		</ul>
-	<% end %>
-	<% if !@created_and_active_open.empty? %>
-		<h5>Rounds You Have Running</h5>
-		<ul>
-			<% @created_and_active_open.each do |round| %>
-	  			<li>Round Title: <%= link_to "#{round.title}", round_path(round.id) %></li>
-	  			<% if !current_user.current_round_poem(round).submitted? %>
-	  				<li>Poem not submitted--<%= link_to "Work on your poem", edit_poem_path(current_user.current_round_poem(round).id) %></li>
-	  			<% else %>
-	  				<li>Poem Submitted!</li>
-				<% end %>
-				<br>
-			<% end %>
-		</ul>
-	<% end %>
-	<br>
-	<% if !@created_not_open_rounds_with_non_submitted.empty? %>
-		<h5>Rounds You Closed But Still Need Your Poetry Skills</h5>
-		<ul>
-			<% @created_not_open_rounds_with_non_submitted.each do |round| %>
-				<li>Round Title: <%= link_to "#{round.title}", round_path(round.id) %></li>
-				<li><%= link_to "Work on your poem", edit_poem_path(current_user.current_round_poem.id) %></li><br>
-			<% end %>
-		</ul>
-	<% end %>
+  	<% if !@created_and_inactive.empty? %>
+  		<h5>Rounds Needing Poets</h5>
+  		<ul>
+  		<% @created_and_inactive.each do |round| %>
+  			<li>Title: <%= link_to "#{round.title}", round_path(round.id) %></li>
+  			<li><%= link_to "Change Poem Structure", edit_round_path(round.id) %></li>
+  			<li><%= link_to "Add Poets And Start Round!", "/rounds/add_players/#{round.id}" %></li><br>
+  		<% end %>
+  		</ul>
+  	<% end %>
 
-	<% if !@player_rounds_with_non_submitted.empty? %>
-		<h3>Rounds You Are In Awaiting Your Poetry Skills</h3>
-		<ul>
-			<% @player_rounds_with_non_submitted.each do |round| %>
-				<li>Round Title: <%= link_to "#{round.title}", round_path(round.id) %>, created by <%= User.find(round.creator_id).username %></li>
-				<li><%= link_to "Work on your poem", edit_poem_path(current_user.current_round_poem(round).id) %></li><br>
-			<% end %>
-		</ul>
-	<% end %>
+    <% if !@created_and_active_open.empty? %>
+  		<h5>Rounds You Have Running</h5>
+  		<ul>
+  			<% @created_and_active_open.each do |round| %>
+  	  			<li>Round Title: <%= link_to "#{round.title}", round_path(round.id) %></li>
+  	  			<% if !current_user.current_round_poem(round).submitted? %>
+  	  				<li>Poem not submitted--<%= link_to "Work on your poem", edit_poem_path(current_user.current_round_poem(round).id) %></li>
+  	  			<% else %>
+  	  				<li>Poem Submitted!</li>
+  				<% end %>
+  				<br>
+  			<% end %>
+  		</ul>
+  	<% end %>
+  	<br>
+  	<% if !@created_not_open_rounds_with_non_submitted.empty? %>
+  		<h5>Rounds You Closed But Still Need Your Poetry Skills</h5>
+  		<ul>
+  			<% @created_not_open_rounds_with_non_submitted.each do |round| %>
+  				<li>Round Title: <%= link_to "#{round.title}", round_path(round.id) %></li>
+  				<li><%= link_to "Work on your poem", edit_poem_path(current_user.current_round_poem.id) %></li><br>
+  			<% end %>
+  		</ul>
+  	<% end %>
 
-	<% if !@player_rounds_with_submitted.empty? || !@created_rounds_not_open_with_submitted.empty? %>
-		<h1>Old Rounds</h1>
-			<% if !@created_rounds_not_open_with_submitted.empty? %>
-				<h3>Created Rounds</h3>
-				<ul>
-					<% @created_rounds_not_open_with_submitted.each do |round| %>
-						<li>Round Title: <%= link_to "#{round.title}", round_path(round.id) %></li><br>
-					<% end %>
-				</ul>
-			<% end %>
+  	<% if !@player_rounds_with_non_submitted.empty? %>
+  		<h3>Rounds You Are In Awaiting Your Poetry Skills</h3>
+  		<ul>
+  			<% @player_rounds_with_non_submitted.each do |round| %>
+  				<li>Round Title: <%= link_to "#{round.title}", round_path(round.id) %>, created by <%= User.find(round.creator_id).username %></li>
+  				<li><%= link_to "Work on your poem", edit_poem_path(current_user.current_round_poem(round).id) %></li><br>
+  			<% end %>
+  		</ul>
+  	<% end %>
 
-		<% if !@player_rounds_with_submitted.empty? %>
-			<h3>Other Rounds</h3>
-			<ul>
-				<% @player_rounds_with_submitted. each do |round| %>
-					<li>Round Title: <%= link_to "#{round.title}", round_path(round.id) %>, created by <%= User.find(round.creator_id).username %></li><br>
-				<% end %>
-			</ul>
-		<% end %>
-	<% end %>
-<% end %>
+  	<% if !@player_rounds_with_submitted.empty? || !@created_rounds_not_open_with_submitted.empty? %>
+  		<h1>Old Rounds</h1>
+  			<% if !@created_rounds_not_open_with_submitted.empty? %>
+  				<h3>Created Rounds</h3>
+  				<ul>
+  					<% @created_rounds_not_open_with_submitted.each do |round| %>
+  						<li>Round Title: <%= link_to "#{round.title}", round_path(round.id) %></li><br>
+  					<% end %>
+  				</ul>
+  			<% end %>
+
+  		<% if !@player_rounds_with_submitted.empty? %>
+  			<h3>Other Rounds</h3>
+  			<ul>
+  				<% @player_rounds_with_submitted. each do |round| %>
+  					<li>Round Title: <%= link_to "#{round.title}", round_path(round.id) %>, created by <%= User.find(round.creator_id).username %></li><br>
+  				<% end %>
+  			</ul>
+  		<% end %>
+  	<% end %>
+  <% end %>
 </div>
