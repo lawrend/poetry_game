@@ -1,20 +1,13 @@
 <div class="container">
-	<% @rounds.each do |round| %>
+	<% @poems.each do |poem| %>
 		<div class="row">
-			<h3><div class="col-sm-12"><%= round.title %></div></h3>
-		</div> <!-- row -->
-		<div class="row">
-			<h4><div class="col-sm-12"> by <%= User.find(round.creator_id).username %></div></h4>
-		</div> <!-- row -->
-		<ul>
-		<% if round.poems.empty? %>
-			<li>There are no poets in this round yet</li>
-		<% else %>
-			<% round.poems.each do |poem| %>
-			<li><%=link_to "#{User.find(poem.user_id).username}'s poem", poem_path(poem) %></li>
+			<h3><%= link_to "#{poem.title}", Poem.find(poem.id) %></h3>
+			<% if poem.submitted? %>
+				<h5><em>Submitted</em></h5>
+			<% else %>
+				<h5><em>Not Yet Submitted</em><h5>
 			<% end %>
-		<% end %>
-		</ul>
+		</div> <!-- row -->
 	<% end %>
 	<br>
 	<%= link_to "Home", '/player' %>

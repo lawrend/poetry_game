@@ -30,13 +30,12 @@
      </div>
    </div>
  <% end %>
-
-or<br>
-
-<%= link_to "Not yet, go home", player_path(current_user.id) %>
+ <div class="container">
+   <p><%= link_to "Not yet, go home", "/player" %></p>
+ </div>
 
 <% else %>
 
-<%= link_to "Home", player_path(current_user.id) %>
+  <%= link_to "Home", "/player" %>
 
 <% end %>

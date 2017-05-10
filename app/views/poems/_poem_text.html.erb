@@ -2,7 +2,7 @@
 
 <% if @poem.line1_syllable_count != 0 %>
   <p><%=@poem.line1_syllable_count%>:
-  <% if @poem.line1 == nil %>
+  <% if @poem.line1 == nil || @poem.line1.empty?  %>
     <em><%= @no_text %><em>
   <% else %>
     <%=@poem.line1%></p>
@@ -11,7 +11,7 @@
 
 <% if @poem.line2_syllable_count != 0 %>
 <p><%=@poem.line2_syllable_count%>:
-  <% if @poem.line2 == nil %>
+  <% if @poem.line2 == nil || @poem.line2.empty?  %>
     <em><%= @no_text %><em>
   <% else %>
     <%=@poem.line2%></p>
@@ -20,7 +20,7 @@
 
 <% if @poem.line3_syllable_count != 0 %>
 <p><%=@poem.line3_syllable_count%>:
-  <% if @poem.line3 == nil %>
+  <% if @poem.line3 == nil || @poem.line3.empty?  %>
     <em><%= @no_text %><em>
   <% else %>
     <%=@poem.line3%></p>
@@ -29,7 +29,7 @@
 
 <% if @poem.line4_syllable_count != 0 %>
 <p><%=@poem.line4_syllable_count%>:
-  <% if @poem.line4 == nil %>
+  <% if @poem.line4 == nil || @poem.line4.empty?  %>
     <em><%= @no_text %><em>
   <% else %>
     <%=@poem.line4%></p>
@@ -38,7 +38,7 @@
 
 <% if @poem.line5_syllable_count != 0 %>
 <p><%=@poem.line5_syllable_count%>:
-  <% if @poem.line5 == nil %>
+  <% if @poem.line5 == nil || @poem.line5.empty?  %>
     <em><%= @no_text %><em>
   <% else %>
     <%=@poem.line5%></p>
@@ -47,7 +47,7 @@
 
 <% if @poem.line6_syllable_count != 0 %>
 <p><%=@poem.line6_syllable_count%>:
-  <% if @poem.line6 == nil %>
+  <% if @poem.line6 == nil || @poem.line6.empty?  %>
     <em><%= @no_text %><em>
   <% else %>
     <%=@poem.line6%></p>
@@ -56,7 +56,7 @@
 
 <% if @poem.line7_syllable_count != 0 %>
 <p><%=@poem.line7_syllable_count%>:
-  <% if @poem.line7 == nil %>
+  <% if @poem.line7 == nil || @poem.line7.empty?  %>
     <em><%= @no_text %><em>
   <% else %>
     <%=@poem.line7%></p>
@@ -65,7 +65,7 @@
 
 <% if @poem.line8_syllable_count != 0 %>
 <p><%=@poem.line8_syllable_count%>:
-  <% if @poem.line8 == nil %>
+  <% if @poem.line8 == nil || @poem.line8.empty?  %>
     <em><%= @no_text %><em>
   <% else %>
     <%=@poem.line8%></p>
@@ -74,7 +74,7 @@
 
 <% if @poem.line9_syllable_count != 0 %>
 <p><%=@poem.line9_syllable_count%>:
-  <% if @poem.line9 == nil %>
+  <% if @poem.line9 == nil || @poem.line9.empty?  %>
     <em><%= @no_text %><em>
   <% else %>
     <%=@poem.line9%></p>
@@ -83,7 +83,7 @@
 
 <% if @poem.line10_syllable_count != 0 %>
 <p><%=@poem.line10_syllable_count%>:
-  <% if @poem.line10 == nil %>
+  <% if @poem.line10 == nil || @poem.line10.empty? %>
     <em><%= @no_text %><em>
   <% else %>
     <%=@poem.line10%></p>

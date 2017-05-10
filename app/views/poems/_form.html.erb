@@ -15,10 +15,10 @@
 
     <p class="lead"><%= @poem.title %></p>
 
-    <% @poem_round = Round.find(@poem.round_id) %> 
+    <% @poem_round = Round.find(@poem.round_id) %>
     <% n=@poem.round.line_count %>
     <% @lines = [*1..n] %>
-    
+
     <% @lines.each do |line| %>
       <% linenum = "line#{line}" %>
       <% syl_count = "#{linenum}_syllable_count" %>
@@ -30,7 +30,7 @@
         </div>
       </div>
     <% end %>
-    
+
     <div class="form-group" style="border-top: 1px solid; border-bottom: 1px solid; padding-top: 10px">
       <div class="col-sm-3">
         <p class="lead">Who can see your poem?</p>
@@ -38,7 +38,7 @@
       <div class="radio">
         <div class="col-sm-1">
           <%=f.radio_button :status, "creator_only" %>Only You
-        </div> 
+        </div>
         <div class="col-sm-2">
           <%=f.radio_button :status, "round_participants" %>The Poets In The Round
         </div>
@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    
+
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <div class="checkbox">
@@ -69,11 +69,7 @@
   <h2>Sorry, this isn't your poem to write</h2>
 
   <div class="container">
-    <%= link_to "Home", player_path(current_user.id) %>
+    <%= link_to "Home", "/player" %>
   </div>
 
 <% end %>
-
-
-
-

@@ -2,8 +2,7 @@ class PoemsController < ApplicationController
 	before_action :set_poem, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@poems = Poem.all
-		@rounds = Round.all
+		@poems = current_user.poems
 	end
 
 	def new
@@ -37,9 +36,9 @@ class PoemsController < ApplicationController
     end
 
 	def poem_params
-		params.require(:poem).permit(:user_id, :title, :round_id, :status, :public, :line1_syllable_count, :line2_syllable_count, 
-			:line3_syllable_count, :line4_syllable_count, :line5_syllable_count, :line6_syllable_count, :line7_syllable_count, 
-			:line8_syllable_count, :line9_syllable_count, :line10_syllable_count, :line1, :line2, :line3, :line4, :line5, :line6, 
+		params.require(:poem).permit(:user_id, :title, :round_id, :status, :public, :line1_syllable_count, :line2_syllable_count,
+			:line3_syllable_count, :line4_syllable_count, :line5_syllable_count, :line6_syllable_count, :line7_syllable_count,
+			:line8_syllable_count, :line9_syllable_count, :line10_syllable_count, :line1, :line2, :line3, :line4, :line5, :line6,
 			:line7, :line8, :line9, :line10, :submitted)
 	end
 

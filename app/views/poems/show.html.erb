@@ -3,9 +3,14 @@ by<br>
 <%= User.find(@poem.user_id).username %><br><br>
 
 <% if @poem.user_id == current_user.id %>
-	<h2>you can read this because you are the author</h2><br>
 	<%= render 'poem_text' %><br>
-	<%= link_to "Edit", edit_poem_path(@poem) %><br>
+	<% if !@poem.submitted? %>
+		<p><em>poem not yet submitted</em></p>
+		<p><%= link_to "Edit", edit_poem_path(@poem) %></p>
+	<% else %>
+		<p><em>poem has been submitted</em></p>
+		<p><%= link_to "Change who can see your poem", edit_poem_path(@poem) %><p>
+	<% end %>
 <% elsif @poem.creator_only? %>
 	<p>Sorry, this poem isn't ready for the public</p>
 <% elsif @poem.round_participants? %>
@@ -19,4 +24,4 @@ by<br>
     <%= render 'poem_text' %>
 <% end %>
 
-<%= link_to "Home", player_path(current_user) %>
+<%= link_to "Home", "/player" %>
